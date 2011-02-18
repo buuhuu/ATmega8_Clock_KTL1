@@ -25,19 +25,32 @@ uint8_t setMode = SET_MODE_NONE;
 
 void increaseTime() {
 
-    if(seconds < 59) {
-        seconds += 1;
-    } else if(minutes < 59) {
-        minutes += 1;
+    switch(setMode) {
+        case SET_MODE_NONE:
+        case SET_MODE_SECONDS:
+            seconds ++;
+            break;
+        case SET_MODE_MINUTES:
+            minutes ++;
+            break;
+        case SET_MODE_HOUR:
+            hours ++;
+            break;
+    }
+
+
+    if(seconds == 60) {
+        minutes ++;
         seconds = 0;
-    } else if(hours < 23) {
-        hours += 1;
+    }
+
+    if(minutes == 60) {
+        hours ++;
         minutes = 0;
-        seconds = 0;
-    } else {
+    }
+
+    if(hours == 24) {
         hours = 0;
-        minutes = 0;
-        seconds = 0;
     }
 
     return;
