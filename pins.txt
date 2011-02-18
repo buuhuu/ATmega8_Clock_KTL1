@@ -1,0 +1,20 @@
+http://www.atmel.com/dyn/resources/prod_documents/doc2486.pdf
+
+Pin	Port(bit)	Ausgabe
+16	PB4		Register Data
+15	PB3		Register Clk
+14	PB2		Register Strobe
+
+23	PC0		Zeile 1
+24	PC1		Zeile 2
+25	PC2		Zeile 3
+26	PC3		Zeile 4
+2	PD4		Zeile 5
+9	PD5		Zeile 6
+10	PD6		Zeile 7
+11	PD7		Zeile 8
+12	PB0		Zeile 9
+13	PB1		Zeile 10
+
+19	ADC7		AD-Wandler 1
+22	ADC6		AD-Wandler 2
