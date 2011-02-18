@@ -19,6 +19,26 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 #define CLOCK_H_INCLUDED
 
 /**
+ * Don't edit the clock values
+ */
+#define SET_MODE_NONE       1
+
+/**
+ * Is used when the hours value should be modified by the user
+ */
+#define SET_MODE_HOUR       2
+
+/**
+ * Is used when the minutes value should be modified by the user
+ */
+#define SET_MODE_MINUTES    3
+
+/**
+ * Is used when the seconds value should be modified by the user
+ */
+ #define SET_MODE_SECONDS    4
+
+/**
  * Increase the time by one second
  */
 void increaseTime();

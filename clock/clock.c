@@ -19,11 +19,6 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 
 #include "clock.h"
 
-#define SET_MODE_NONE       1
-#define SET_MODE_HOUR       2
-#define SET_MODE_MINUTES    3
-#define SET_MODE_SECONDS    4
-
 
 uint8_t seconds = 0, minutes = 0, hours = 0;
 uint8_t setMode = SET_MODE_NONE;

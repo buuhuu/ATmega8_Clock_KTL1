@@ -11,7 +11,7 @@
 	"clock/clock.h"
 	"output/display_12_10.h"
 
-1298022831 /home/rud/workspace/Mikrocontroller/Uhr/clock/clock.h
+1298050454 /home/rud/workspace/Mikrocontroller/Uhr/clock/clock.h
 
 1297962305 source:/home/rud/workspace/Mikrocontroller/Uhr/output/output10p.c
 	<inttypes.h>
