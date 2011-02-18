@@ -65,10 +65,18 @@ void resetTime() {
 
 void nextSetMode() {
     switch(setMode) {
-        case SET_MODE_HOUR: setMode = SET_MODE_MINUTES; break;
-        case SET_MODE_MINUTES: setMode = SET_MODE_SECONDS; break;
-        case SET_MODE_SECONDS: setMode = SET_MODE_NONE; break;
-        case SET_MODE_NONE: setMode = SET_MODE_HOUR; break;
+        case SET_MODE_HOUR:
+            setMode = SET_MODE_MINUTES;
+            break;
+        case SET_MODE_MINUTES:
+            setMode = SET_MODE_SECONDS;
+            break;
+        case SET_MODE_SECONDS:
+            setMode = SET_MODE_NONE;
+            break;
+        case SET_MODE_NONE:
+            setMode = SET_MODE_HOUR;
+            break;
         //default setMode = SET_MODE_NONE;
     }
 }
