@@ -47,10 +47,11 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="main.h" />
-		<Unit filename="output/output10p.c">
+		<Unit filename="output/ascii_table.h" />
+		<Unit filename="output/display_12_10.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="output/output10p.h" />
+		<Unit filename="output/display_12_10.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

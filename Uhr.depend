@@ -3,7 +3,7 @@
 	<inttypes.h>
 	"clock.h"
 
-1298024409 source:/home/rud/workspace/Mikrocontroller/Uhr/main.c
+1298024673 source:/home/rud/workspace/Mikrocontroller/Uhr/main.c
 	<avr/io.h>
 	<avr/interrupt.h>
 	<inttypes.h>
