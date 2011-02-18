@@ -23,15 +23,19 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 void printChar(bitmap_t dest, char character, int8_t shift)
 {
     int i;
-    for(i = 0; i < 10; i++)
+    if((character >= 33) && (character <= 126))
     {
-        if(shift > 0)
+        for(i = 0; i < 10; i++)
         {
-            dest[i] |= ascii_table[(character-33)][i] << shift;
-        }
-        else
-        {
-            dest[i] |= ascii_table[(character-33)][i] >> -shift;
+            if(shift > 0)
+            {
+                dest[i] |= ascii_table[(character-33)][i] << shift;
+            }
+            else
+            {
+                dest[i] |= ascii_table[(character-33)][i] >> -shift;
+            }
         }
     }
+
 }
