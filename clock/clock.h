@@ -15,6 +15,8 @@ erhalten haben. Falls nicht, schreiben Sie an die Free Software Foundation, Inc.
 Franklin St, Fifth Floor, Boston, MA 02110, USA.
 */
 
+#include "../output/display_12_10.h"
+
 #ifndef CLOCK_H_INCLUDED
 #define CLOCK_H_INCLUDED
 
@@ -56,6 +58,6 @@ void nextSetMode();
 /**
  * Used to generate a bitmap based on the given time.
  */
-void printTime(uint16_t* destination);
+void printTime(bitmap_t destination);
 
 #endif // CLOCK_H_INCLUDED

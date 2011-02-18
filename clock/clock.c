@@ -18,6 +18,7 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 #include <inttypes.h>
 
 #include "clock.h"
+#include "../output/display_12_10.h"
 
 
 uint8_t seconds = 0, minutes = 0, hours = 0;
@@ -72,7 +73,7 @@ void nextSetMode() {
     }
 }
 
-void printTime(uint16_t* destination) {
+void printTime(bitmap_t destination) {
 
     destination[1] = hours;
     destination[3] = minutes;

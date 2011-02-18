@@ -20,7 +20,7 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 
 #include "display_12_10.h"
 
-void scanout(const uint16_t* bitmap) {
+void scanout(const bitmap_t bitmap) {
 
     uint8_t currentRow, currentBit;
 

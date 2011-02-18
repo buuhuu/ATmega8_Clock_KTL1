@@ -28,6 +28,6 @@ typedef uint16_t bitmap_t[10];
 /**
  * Scanout the given bitmap to the display
  */
-void scanout(const uint16_t* bitmap);
+void scanout(const bitmap_t bitmap);
 
 #endif // DISPLAY_12_10_H_INCLUDED
