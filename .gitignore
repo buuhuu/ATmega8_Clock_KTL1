@@ -1,8 +1,2 @@
-# ignore compilation results
 bin/
 obj/
-# ignore code blocks project files
-Uhr.cbp
-Uhr.depend
-Uhr.layout
-

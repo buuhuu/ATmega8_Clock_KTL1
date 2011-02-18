@@ -1,0 +1,58 @@
+# depslib dependency file v1.0
+1298053123 source:/home/rud/workspace/Mikrocontroller/Uhr/clock/clock.c
+	<inttypes.h>
+	"clock.h"
+
+1298052446 source:/home/rud/workspace/Mikrocontroller/Uhr/main.c
+	<avr/io.h>
+	<avr/interrupt.h>
+	<inttypes.h>
+	"main.h"
+	"clock/clock.h"
+	"output/display_12_10.h"
+
+1298054049 /home/rud/workspace/Mikrocontroller/Uhr/clock/clock.h
+	"../output/display_12_10.h"
+
+1297962305 source:/home/rud/workspace/Mikrocontroller/Uhr/output/output10p.c
+	<inttypes.h>
+	<avr/io.h>
+	<util/delay.h>
+	"../clock/clock.h"
+
+1297965257 /home/rud/workspace/Mikrocontroller/Uhr/output/output10p.h
+
+1298019958 /home/rud/workspace/Mikrocontroller/Uhr/main.h
+
+1298019627 source:/home/Lynxeye/Projekte/Uhr/main.c
+	<avr/io.h>
+	<avr/interrupt.h>
+	<inttypes.h>
+	"main.h"
+	"clock/clock.h"
+	"output/display_12_10.h"
+
+1297962200 /home/Lynxeye/Projekte/Uhr/main.h
+
+1298018996 /home/Lynxeye/Projekte/Uhr/clock/clock.h
+
+1298019000 /home/Lynxeye/Projekte/Uhr/output/output10p.h
+
+1298019013 source:/home/Lynxeye/Projekte/Uhr/clock/clock.c
+	<inttypes.h>
+	"clock.h"
+
+1298019022 source:/home/Lynxeye/Projekte/Uhr/output/output10p.c
+	<inttypes.h>
+	<avr/io.h>
+	<util/delay.h>
+
+1298019373 /home/Lynxeye/Projekte/Uhr/output/display_12_10.h
+
+1298053735 source:/home/rud/workspace/Mikrocontroller/Uhr/output/display_12_10.c
+	<inttypes.h>
+	<avr/io.h>
+	"display_12_10.h"
+
+1298053726 /home/rud/workspace/Mikrocontroller/Uhr/output/display_12_10.h
+
