@@ -20,7 +20,7 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 #include "display_12_10.h"
 #include "ascii_table.h"
 
-void printChar(bitmap_t dest, char character, int8_t shift)
+void printChar(bitmap_t dest, const char character, const int8_t shift)
 {
     int i;
     if((character >= 33) && (character <= 126))
@@ -37,5 +37,4 @@ void printChar(bitmap_t dest, char character, int8_t shift)
             }
         }
     }
-
 }

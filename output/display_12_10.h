@@ -33,6 +33,6 @@ void scanout(const bitmap_t bitmap);
 /**
  * clearBuffer clears the framebuffer with a given pattern
  */
-void clearBuffer(bitmap_t bitmap, uint8_t pattern);
+void clearBuffer(bitmap_t bitmap, const uint8_t pattern);
 
 #endif // DISPLAY_12_10_H_INCLUDED

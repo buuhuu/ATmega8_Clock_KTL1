@@ -23,6 +23,6 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
  * shift specifies the vertical position of the character
  * printChar does *not* destroy the previous contents of the framebuffer
  */
-void printChar(bitmap_t dest, char character, uint8_t shift);
+void printChar(bitmap_t dest, const char character, const uint8_t shift);
 
 #endif // ASCII_H_INCLUDED
