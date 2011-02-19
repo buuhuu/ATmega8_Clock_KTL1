@@ -15,8 +15,6 @@ erhalten haben. Falls nicht, schreiben Sie an die Free Software Foundation, Inc.
 Franklin St, Fifth Floor, Boston, MA 02110, USA.
 */
 
-#include "../output/display_12_10.h"
-
 #ifndef CLOCK_H_INCLUDED
 #define CLOCK_H_INCLUDED
 
@@ -59,5 +57,16 @@ void nextSetMode();
  * Used to generate a bitmap based on the given time.
  */
 void printTime(bitmap_t destination);
+
+/**
+ * Start clock timer.
+ */
+inline void startTimer();
+
+/**
+ * Stop clock timer
+ */
+inline void stopTimer();
+
 
 #endif // CLOCK_H_INCLUDED

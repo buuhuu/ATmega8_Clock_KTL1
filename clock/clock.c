@@ -15,10 +15,11 @@ erhalten haben. Falls nicht, schreiben Sie an die Free Software Foundation, Inc.
 Franklin St, Fifth Floor, Boston, MA 02110, USA.
 */
 
+#include <avr/io.h>
 #include <inttypes.h>
 
-#include "clock.h"
 #include "../output/display_12_10.h"
+#include "clock.h"
 
 
 uint8_t seconds = 0, minutes = 0, hours = 0;
@@ -73,9 +74,11 @@ void nextSetMode() {
             break;
         case SET_MODE_SECONDS:
             setMode = SET_MODE_NONE;
+            startTimer();
             break;
         case SET_MODE_NONE:
             setMode = SET_MODE_HOUR;
+            stopTimer();
             break;
         //default setMode = SET_MODE_NONE;
     }
@@ -90,4 +93,16 @@ void printTime(bitmap_t destination) {
     destination[9] = setMode;
 
     return;
+}
+
+inline void startTimer() {
+    // Timer1 (16Bit) CPU-Takt/1024
+    // http://www.info-rlp.de/lernteams/eli05/abschnitt_3_mikrocontroller/problemloesung_2/timer.htm
+    TCNT1 = 0;
+    TCCR1B |= (1 << CS12) | (1 << CS10);
+}
+
+inline void stopTimer() {
+    // Stop Timer0
+    TCCR1B &= ~((1 << CS12) | (1 << CS10));
 }

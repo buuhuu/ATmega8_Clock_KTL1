@@ -20,9 +20,8 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 #include <inttypes.h>
 
 #include "main.h"
-#include "clock/clock.h"
 #include "output/display_12_10.h"
-
+#include "clock/clock.h"
 
 bitmap_t bitmap = {0,0,0,0,0,0,0,0,0,0};
 
@@ -66,30 +65,27 @@ void init() {
 	// enable interrupts in general
 	sei();
 
-    // Timer1 (16Bit) CPU-Takt/1024
-    // http://www.info-rlp.de/lernteams/eli05/abschnitt_3_mikrocontroller/problemloesung_2/timer.htm
-    TCNT1 = 0;
-    TCCR1B |= (1 << CS12) | (0 << CS11) | (1 << CS10);
-
     // Timer0 (8Bit) CPU-Takt/1024
     // react on overflow interrupts 15 times per second
     TCNT0 = 0;
     TCCR0 |= (1 << CS12) | (0 << CS11) | (1 << CS10);
+
+    startTimer();
 }
 
 /*
  * Interrupt handling
  */
 
- uint16_t int0startTime = 0;
+ uint16_t int0startTime = 8000;
 
 ISR(INT0_vect) {
     if((int0startTime + 3906) % 7813 < TCNT1) {
         nextSetMode();
         printTime(bitmap);
         scanout(bitmap);
-        int0startTime = 0;
-    } else if(int0startTime == 0) {
+        int0startTime = 8000;
+    } else if(int0startTime == 8000) {
         int0startTime = TCNT1;
     }
 }
