@@ -69,6 +69,4 @@ void scanout(const bitmap_t bitmap) {
             case 9: PORTB |= 0x02; break;
         }
     }
-
-    return;
 }
