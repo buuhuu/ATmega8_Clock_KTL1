@@ -70,3 +70,12 @@ void scanout(const bitmap_t bitmap) {
         }
     }
 }
+
+void clearBuffer(bitmap_t bitmap, uint8_t pattern)
+{
+    int i;
+    for(i = 0; i < 10; i++)
+    {
+        bitmap[i] = ((pattern << 8) | (pattern));
+    }
+}
