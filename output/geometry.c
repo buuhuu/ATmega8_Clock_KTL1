@@ -40,7 +40,7 @@ void drawLine(bitmap_t dest, struct point_t start, struct point_t end) {
     uint8_t i, j;
 	/* care about vertical lines */
 	if (start.column == end.column) {
-		for (i=start.row; i <= end.column; i++) {
+		for (i=start.row; i < end.row; i++) {
 			dest[i] |= (1 << start.column);
 		};
 		return;
@@ -78,12 +78,5 @@ inline void swap(uint8_t* left, uint8_t* right) {
 	uint8_t temp = *left;
 	*left = *right;
 	*right = temp;
-};
-
-void clearBitmap(bitmap_t* dest) {
-    int i;
-	for (i=0; i < 10; i++) {
-		(*dest)[i] = 0x0;
-	};
 };
 

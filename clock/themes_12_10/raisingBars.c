@@ -39,6 +39,7 @@ example
 */
 
 void raisingBars(bitmap_t destination, uint8_t hours, uint8_t minutes, uint8_t seconds, uint8_t setMode) {
+    clearBuffer(destination, 0x00);
 	drawLine(destination, point(0,0), point(0,(seconds % 10)));
 	drawLine(destination, point(1,0), point(1,(seconds / 10)));
 

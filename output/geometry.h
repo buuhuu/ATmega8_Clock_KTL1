@@ -34,6 +34,4 @@ void drawLine(bitmap_t dest, struct point_t start, struct point_t end);
 
 inline void swap(uint8_t* left, uint8_t* right);
 
-void clearBitmap(bitmap_t* dest);
-
 #endif

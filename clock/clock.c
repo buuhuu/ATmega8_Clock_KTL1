@@ -21,7 +21,8 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 #include "../output/display_12_10.h"
 #include "clock.h"
 #include "themes_12_10/simpleBinary.h"
-
+#include "themes_12_10/raisingBars.h"
+#include "themes_12_10/analogClock.h"
 
 uint8_t seconds = 0, minutes = 0, hours = 0;
 uint8_t setMode = SET_MODE_NONE;
@@ -87,7 +88,7 @@ void nextSetMode() {
 
 void printTime(bitmap_t destination) {
 
-    simpleBinary(destination, hours, minutes, seconds, setMode);
+    raisingBars(destination, hours, minutes, seconds, setMode);
 
     return;
 }
