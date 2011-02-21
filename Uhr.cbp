@@ -43,6 +43,18 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="clock/clock.h" />
+		<Unit filename="clock/themes_12_10/analogClock.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="clock/themes_12_10/analogClock.h" />
+		<Unit filename="clock/themes_12_10/raisingBars.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="clock/themes_12_10/raisingBars.h" />
+		<Unit filename="clock/themes_12_10/simpleBinary.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="clock/themes_12_10/simpleBinary.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -56,6 +68,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="output/display_12_10.h" />
+		<Unit filename="output/geometry.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="output/geometry.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />
