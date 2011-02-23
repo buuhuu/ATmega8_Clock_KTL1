@@ -47,6 +47,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="clock/themes_12_10/analogClock.h" />
+		<Unit filename="clock/themes_12_10/dices.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="clock/themes_12_10/dices.h" />
 		<Unit filename="clock/themes_12_10/raisingBars.c">
 			<Option compilerVar="CC" />
 		</Unit>
