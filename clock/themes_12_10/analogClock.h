@@ -20,4 +20,6 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 
 void analogClock(bitmap_t destination, uint8_t hours, uint8_t minutes, uint8_t seconds, uint8_t setMode);
 
+struct point_t getHandPoint(uint8_t time, uint8_t hours);
+
 #endif
