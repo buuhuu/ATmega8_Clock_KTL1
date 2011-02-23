@@ -32,6 +32,4 @@ uint8_t max(uint8_t a, uint8_t b);
 
 void drawLine(bitmap_t dest, struct point_t start, struct point_t end);
 
-inline void swap(uint8_t* left, uint8_t* right);
-
 #endif

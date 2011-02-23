@@ -37,46 +37,112 @@ uint8_t max(uint8_t a, uint8_t b) {
 };
 
 void drawLine(bitmap_t dest, struct point_t start, struct point_t end) {
-    uint8_t i, j;
-	/* care about vertical lines */
+	uint8_t i, j;
+	struct point_t temp;
+
+	// handle vertical lines
 	if (start.column == end.column) {
+		if (start.row > end.row) {
+			temp = start;
+			start = end;
+			end = temp;
+		};
+
 		for (i=start.row; i < end.row; i++) {
 			dest[i] |= (1 << start.column);
 		};
 		return;
 	};
 
-	/* care about horizontal lines */
+	// handle horizontal lines
 	if (start.row == end.row) {
-		dest[start.row] |= (~(1 << start.column) << end.column);
+		dest[start.row] |= (~(1 << end.column) << start.column);
 		return;
 	};
 
-	/* care about other types of lines and generate steps */
+	// handle other types of lines and generate steps
 	uint8_t step;
 	uint8_t current;
 
-	if ((start.row - end.row) > (start.column - end.column)) {
-		step = (start.row - end.row) / (start.column - end.column);
-		current = start.row;
-		for (i = start.column; i <= end.column; i++) {
-			for (j=step; j > 0; j--) {
-				dest[min(current++,end.row)] |= 1 << i;
+	// always paint from LSB to MSB
+	if (start.column > end.column) {
+		temp = start;
+		start = end;
+		end = temp;
+	};
+
+	// going down
+	if (end.row > start.row) {
+		// step down horizontally
+		/*
+			  ##
+			##
+		*/
+		if ((end.column - start.column) >= (end.row - start.row)) {
+			// step at least 1px
+			step = max((end.column - start.column) / (end.row - start.row) - 1 , 1);
+			current = start.column;
+
+			for (i = start.row; i <= end.row; i++) {
+				dest[i] |= (~(1 << step) << current);
+				current = min(current+step,end.column);
+				// adjust step if neccessary
+				step = min(step, end.column-current);
 			};
+			return;
+		} else {
+		// step down vertically
+		/*
+			 #
+			 #
+			#
+			#
+		*/
+			step = (end.row - start.row) / (end.column - start.column) - 1;
+			current = start.row;
+			for (i = start.column; i <= end.column; i++) {
+				for (j=step; j > 0; j--) {
+					dest[min(current++,end.row)] |= 1 << i;
+				};
+			};
+			return;
 		};
 	} else {
-		step = (start.column - end.column) / (start.row - end.row);
-		current = start.column;
-		for (i = start.row; i <= end.row; i++) {
-			dest[i] |= (~(1 << step) << current);
-			current += step;
+	// going up
+		// step up horizontally
+		/*
+			##
+			  ##
+		*/
+		if ((end.column - start.column) >= abs(end.row - start.row)) {
+			// step at least 1px
+			step = max((end.column - start.column) / abs(end.row - start.row) - 1 , 1);
+			current = start.column;
+
+			for (i = start.row; i >= end.row; i--) {
+				dest[i] |= (~(1 << step) << current);
+				current = min(current+step,end.column);
+				// adjust step if neccessary
+				step = min(step, end.column-current);
+			};
+			return;
+		} else {
+		// step up vertically
+		/*
+			#
+			#
+			 #
+			 #
+		*/
+			step = abs(end.row - start.row) / (end.column - start.column) - 1;
+			current = start.row;
+			for (i = start.column; i >= end.column; i--) {
+				for (j=step; j > 0; j--) {
+					dest[min(current++,end.row)] |= 1 << i;
+				};
+			};
+			return;
 		};
 	};
-};
 
-inline void swap(uint8_t* left, uint8_t* right) {
-	uint8_t temp = *left;
-	*left = *right;
-	*right = temp;
 };
-
