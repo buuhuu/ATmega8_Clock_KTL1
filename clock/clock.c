@@ -148,6 +148,5 @@ void printTime(bitmap_t destination) {
 
 // Interupt service routine for clock overflow
 ISR(TIMER2_OVF_vect) {
-    TCNT2++; // don't forget the first count event
     increaseTime();
 }
