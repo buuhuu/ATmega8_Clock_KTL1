@@ -28,12 +28,16 @@ struct point_t point(uint8_t col, uint8_t row) {
     return temp;
 };
 
-uint8_t min(uint8_t a, uint8_t b) {
+inline uint8_t min(uint8_t a, uint8_t b) {
 	return (a < b) ? a : b;
 };
 
-uint8_t max(uint8_t a, uint8_t b) {
+inline uint8_t max(uint8_t a, uint8_t b) {
 	return (a > b) ? a : b;
+};
+
+inline uint8_t abs_8t(int8_t a) {
+    return (a < 0) ? -a : a;
 };
 
 void drawLine(bitmap_t dest, struct point_t start, struct point_t end) {
@@ -114,9 +118,9 @@ void drawLine(bitmap_t dest, struct point_t start, struct point_t end) {
 			##
 			  ##
 		*/
-		if ((end.column - start.column) >= abs(end.row - start.row)) {
+		if ((end.column - start.column) >= abs_8t(end.row - start.row)) {
 			// step at least 1px
-			step = max((end.column - start.column) / abs(end.row - start.row) - 1 , 1);
+			step = max((end.column - start.column) / abs_8t(end.row - start.row) - 1 , 1);
 			current = start.column;
 
 			for (i = start.row; i >= end.row; i--) {
@@ -134,7 +138,7 @@ void drawLine(bitmap_t dest, struct point_t start, struct point_t end) {
 			 #
 			 #
 		*/
-			step = abs(end.row - start.row) / (end.column - start.column) - 1;
+			step = abs_8t(end.row - start.row) / (end.column - start.column) - 1;
 			current = start.row;
 			for (i = start.column; i >= end.column; i--) {
 				for (j=step; j > 0; j--) {

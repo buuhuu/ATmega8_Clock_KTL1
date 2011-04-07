@@ -26,9 +26,11 @@ struct point_t {
 
 struct point_t point(uint8_t col, uint8_t row);
 
-uint8_t min(uint8_t a, uint8_t b);
+inline uint8_t min(uint8_t a, uint8_t b);
 
-uint8_t max(uint8_t a, uint8_t b);
+inline uint8_t max(uint8_t a, uint8_t b);
+
+inline uint8_t abs_8t(int8_t a);
 
 void drawLine(bitmap_t dest, struct point_t start, struct point_t end);
 
