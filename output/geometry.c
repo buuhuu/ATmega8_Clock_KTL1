@@ -26,19 +26,19 @@ struct point_t point(uint8_t col, uint8_t row) {
     temp.column = col;
     temp.row = row;
     return temp;
-};
+}
 
 inline uint8_t min(uint8_t a, uint8_t b) {
 	return (a < b) ? a : b;
-};
+}
 
 inline uint8_t max(uint8_t a, uint8_t b) {
 	return (a > b) ? a : b;
-};
+}
 
 inline uint8_t abs_8t(int8_t a) {
     return (a < 0) ? -a : a;
-};
+}
 
 void drawLine(bitmap_t dest, struct point_t start, struct point_t end) {
 	uint8_t i, j;
@@ -50,19 +50,19 @@ void drawLine(bitmap_t dest, struct point_t start, struct point_t end) {
 			temp = start;
 			start = end;
 			end = temp;
-		};
+		}
 
 		for (i=start.row; i < end.row; i++) {
 			dest[i] |= (1 << start.column);
-		};
+		}
 		return;
-	};
+	}
 
 	// handle horizontal lines
 	if (start.row == end.row) {
 		dest[start.row] |= (~(1 << end.column) << start.column);
 		return;
-	};
+	}
 
 	// handle other types of lines and generate steps
 	uint8_t step;
@@ -73,7 +73,7 @@ void drawLine(bitmap_t dest, struct point_t start, struct point_t end) {
 		temp = start;
 		start = end;
 		end = temp;
-	};
+	}
 
 	// going down
 	if (end.row > start.row) {
@@ -92,7 +92,7 @@ void drawLine(bitmap_t dest, struct point_t start, struct point_t end) {
 				current = min(current+step,end.column);
 				// adjust step if neccessary
 				step = min(step, end.column-current);
-			};
+			}
 			return;
 		} else {
 		// step down vertically
@@ -107,10 +107,10 @@ void drawLine(bitmap_t dest, struct point_t start, struct point_t end) {
 			for (i = start.column; i <= end.column; i++) {
 				for (j=step; j > 0; j--) {
 					dest[min(current++,end.row)] |= 1 << i;
-				};
-			};
+				}
+			}
 			return;
-		};
+		}
 	} else {
 	// going up
 		// step up horizontally
@@ -128,7 +128,7 @@ void drawLine(bitmap_t dest, struct point_t start, struct point_t end) {
 				current = min(current+step,end.column);
 				// adjust step if neccessary
 				step = min(step, end.column-current);
-			};
+			}
 			return;
 		} else {
 		// step up vertically
@@ -143,10 +143,9 @@ void drawLine(bitmap_t dest, struct point_t start, struct point_t end) {
 			for (i = start.column; i >= end.column; i--) {
 				for (j=step; j > 0; j--) {
 					dest[min(current++,end.row)] |= 1 << i;
-				};
-			};
+				}
+			}
 			return;
-		};
-	};
-
-};
+		}
+	}
+}

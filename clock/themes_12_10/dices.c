@@ -68,28 +68,28 @@ void drawDice(bitmap_t dest, uint8_t number, struct point_t center) {
 		// all mean numbers share center pixel
 		if (number % 2 == 1) {
 			dest[center.row] |= 1 << center.column;
-		};
+		}
 		// all numbers > 1 share corner pixels
 		if (number > 1) {
 			dest[center.row - 1] |= 1 << (center.column - 1);
 			dest[center.row + 1] |= 1 << (center.column + 1);
-		};
+		}
 		// all numbers > 3 share other corner pixels
 		if (number > 3) {
 			dest[center.row - 1] |= 1 << (center.column + 1);
 			dest[center.row + 1] |= 1 << (center.column - 1);
-		};
+		}
 		// all numbers > 5 share left and right pixels
 		if (number > 5) {
 			dest[center.row] |= (1 << (center.column - 1)) | (1 << (center.column + 1)) ;
-		};
+		}
 		// all numbers > 7 share top and bottom pixels
 		if (number > 7) {
 			dest[center.row - 1] |= 1 << center.column;
 			dest[center.row + 1] |= 1 << center.column;
-		};
-	};
-};
+		}
+	}
+}
 
 void dices(bitmap_t dest, uint8_t hours, uint8_t minutes, uint8_t seconds, uint8_t setMode) {
     clearBuffer(dest, 0x00);

@@ -27,6 +27,4 @@ void simpleBinary(bitmap_t destination, uint8_t hours, uint8_t minutes, uint8_t 
     destination[5] = seconds;
 
     destination[9] = setMode;
-
-    return;
 }

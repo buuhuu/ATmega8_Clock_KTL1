@@ -48,4 +48,4 @@ void raisingBars(bitmap_t destination, uint8_t hours, uint8_t minutes, uint8_t s
 
 	drawLine(destination, point(8,9-(hours % 10)), point(8,9));
 	drawLine(destination, point(9,9-(hours / 10)), point(9,9));
-};
+}

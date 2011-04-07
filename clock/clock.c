@@ -50,24 +50,24 @@ void increaseTime() {
     switch(currentMode) {
         case MODE_NONE:
         case MODE_SECOND:
-            seconds ++;
+            seconds++;
             break;
         case MODE_MINUTE:
-            minutes ++;
+            minutes++;
             break;
         case MODE_HOUR:
-            hours ++;
+            hours++;
             break;
     }
 
 
     if(seconds == 60) {
-        minutes ++;
+        minutes++;
         seconds = 0;
     }
 
     if(minutes == 60) {
-        hours ++;
+        hours++;
         minutes = 0;
     }
 
@@ -83,13 +83,13 @@ void descreaseTime() {
         case MODE_NONE:
             return;
         case MODE_SECOND:
-            seconds --;
+            seconds--;
             break;
         case MODE_MINUTE:
-            minutes --;
+            minutes--;
             break;
         case MODE_HOUR:
-            hours --;
+            hours--;
             break;
     }
 
@@ -144,7 +144,6 @@ void printTime(bitmap_t destination) {
     //analogClock(destination, hours, minutes, seconds, currentMode);
     //dices(destination, hours, minutes, seconds, currentMode);
 
-    return;
 }
 
 // Interupt service routine for clock overflow

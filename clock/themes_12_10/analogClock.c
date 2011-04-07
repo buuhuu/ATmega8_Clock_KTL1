@@ -50,7 +50,7 @@ void analogClock(bitmap_t destination, uint8_t hours, uint8_t minutes, uint8_t s
 	drawLine(destination, point(7,4), getHandPoint(minutes,0));
 
 	drawLine(destination, point(7,4), getHandPoint(hours % 12, 1));
-};
+}
 
 struct point_t getHandPoint(uint8_t time, uint8_t hours) {
 	uint8_t row, col;
@@ -60,12 +60,12 @@ struct point_t getHandPoint(uint8_t time, uint8_t hours) {
 			row = max(0, (time - 7)/2);
 			col = max(3, (7 - time) / 2);
 			return point(col,row);
-		};
+		}
 		if (time <= 30) {
 			row = min(8, (time - 7)/2);
 			col = max(3, (time - 23)/2 + 3);
 			return point(col,row);
-		};
+		}
 		if (time <= 45) {
 			row = min(8, ((37 - time) / 2) + 8);
 			col = min(11, (time - 23)/2 + 3);
@@ -74,7 +74,7 @@ struct point_t getHandPoint(uint8_t time, uint8_t hours) {
 			row = max(0, ((37 - time) / 2) + 8);
 			col = min(11, (53 - time) / 2 + 11);
 			return point(col,row);
-		};
+		}
 	} else {
 		// using fixed coordinates is easier here
 		switch(time) {
@@ -90,7 +90,7 @@ struct point_t getHandPoint(uint8_t time, uint8_t hours) {
 			case 9: return point(10,4); break;
 			case 10: return point(10,2); break;
 			case 11: return point(9,1); break;
-		};
-	};
+		}
+	}
 	return point(0,0);
-};
+}
