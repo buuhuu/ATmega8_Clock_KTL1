@@ -27,7 +27,7 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 #include "themes_12_10/dices.h"
 
 volatile uint8_t seconds = 0, minutes = 0, hours = 0;
-uint8_t currentMode = SET_MODE_NONE;
+enum CLOCK_MODE currentMode = MODE_NONE;
 
 void initClock() {
     ASSR = (1<<AS2);
@@ -48,14 +48,14 @@ inline void startClock() {
 void increaseTime() {
 
     switch(currentMode) {
-        case SET_MODE_NONE:
-        case SET_MODE_SECONDS:
+        case MODE_NONE:
+        case MODE_SECOND:
             seconds ++;
             break;
-        case SET_MODE_MINUTES:
+        case MODE_MINUTE:
             minutes ++;
             break;
-        case SET_MODE_HOUR:
+        case MODE_HOUR:
             hours ++;
             break;
     }
@@ -80,15 +80,15 @@ void increaseTime() {
 
 void descreaseTime() {
     switch(currentMode) {
-        case SET_MODE_NONE:
+        case MODE_NONE:
             return;
-        case SET_MODE_SECONDS:
+        case MODE_SECOND:
             seconds --;
             break;
-        case SET_MODE_MINUTES:
+        case MODE_MINUTE:
             minutes --;
             break;
-        case SET_MODE_HOUR:
+        case MODE_HOUR:
             hours --;
             break;
     }
@@ -115,18 +115,18 @@ void resetTime() {
 
 void switchToNextMode() {
     switch(currentMode) {
-        case SET_MODE_HOUR:
-            currentMode = SET_MODE_MINUTES;
+        case MODE_HOUR:
+            currentMode = MODE_MINUTE;
             break;
-        case SET_MODE_MINUTES:
-            currentMode = SET_MODE_SECONDS;
+        case MODE_MINUTE:
+            currentMode = MODE_SECOND;
             break;
-        case SET_MODE_SECONDS:
-            currentMode = SET_MODE_NONE;
+        case MODE_SECOND:
+            currentMode = MODE_NONE;
             startClock();
             break;
-        case SET_MODE_NONE:
-            currentMode = SET_MODE_HOUR;
+        case MODE_NONE:
+            currentMode = MODE_HOUR;
             stopClock();
             break;
         //default setMode = SET_MODE_NONE;

@@ -19,24 +19,14 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 #define CLOCK_H_INCLUDED
 
 /**
- * Don't edit the clock values
+ * enum CLOCK_MODE specifies the clock modification mode
  */
-#define SET_MODE_NONE       1
-
-/**
- * Is used when the hours value should be modified by the user
- */
-#define SET_MODE_HOUR       2
-
-/**
- * Is used when the minutes value should be modified by the user
- */
-#define SET_MODE_MINUTES    3
-
-/**
- * Is used when the seconds value should be modified by the user
- */
- #define SET_MODE_SECONDS    4
+enum CLOCK_MODE {
+    MODE_NONE,      // do not modify clock values
+    MODE_HOUR,      // modify hour
+    MODE_MINUTE,    // modify minutes
+    MODE_SECOND     // modify seconds
+};
 
 /**
  * Init the clock timer and interrupts
