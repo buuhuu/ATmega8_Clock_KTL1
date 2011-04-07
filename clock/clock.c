@@ -30,9 +30,9 @@ volatile uint8_t seconds = 0, minutes = 0, hours = 0;
 enum CLOCK_MODE currentMode = MODE_NONE;
 
 void initClock() {
-    ASSR = (1<<AS2);
-    TCNT2 = 0x00;
-    TCCR2 = 0x05;
+    ASSR = (1<<AS2);    // wire external timesource to tcnt2
+    TCNT2 = 0x00;       // set count reg to 0
+    TCCR2 = 0x05;       // prescaler 128
     TIMSK |= (1<<TOIE2);
 }
 
