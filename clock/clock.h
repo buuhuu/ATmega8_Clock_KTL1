@@ -63,15 +63,4 @@ uint8_t getMode();
  */
 void printTime(bitmap_t destination);
 
-/**
- * Start clock timer.
- */
-inline void startTimer();
-
-/**
- * Stop clock timer
- */
-inline void stopTimer();
-
-
 #endif // CLOCK_H_INCLUDED
