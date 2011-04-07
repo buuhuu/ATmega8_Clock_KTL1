@@ -20,10 +20,22 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 #include <inttypes.h>
 
 #include "main.h"
+#include "input/input.h"
 #include "output/display_12_10.h"
 #include "clock/clock.h"
 
 bitmap_t bitmap = {0,0,0,0,0,0,0,0,0,0};
+
+inline void handleKeyInput() {
+    initKeys(KEYS);
+    if(getKeyPressed(KEY0)) {
+        switchToNextMode();
+    }
+}
+
+inline void handleADCInput() {
+
+}
 
 int main(void)
 {
@@ -31,12 +43,10 @@ int main(void)
     init();
 
     while(1) {
-        if(TCNT1 >= 7813) {
-            TCNT1 = 0;
-            increaseTime();
-            printTime(bitmap);
-        }
+        handleKeyInput();
+        handleADCInput();
 
+        printTime(bitmap);
         scanout(bitmap);
     }
 
@@ -44,48 +54,13 @@ int main(void)
 }
 
 void init() {
-    // enable PORTC pins as output pins
+    // set i/o pin direction
+    DDRB = 0xdf;    // external crystal pins must be 0
     DDRC = 0x0f;
-    // enable PORTB pins as output pins
-    DDRB = 0x1f;
-    // enable PORTD pins as output pins
     DDRD = 0xf0;
 
-    // reset all ports
-    PORTB = 0;
-    PORTC = 0;
-    PORTD = 0;
-
-    // configure the interrupts for rising edge
-    MCUCR |= (1 << ISC00) | (1 << ISC01);
-    // enable INT0 interrupt
-	GICR |= (1 << INT0);
-	// enable timer overflow interrupt for timer0
-	TIMSK |= (1 << TOIE0);
-	// enable interrupts in general
-	sei();
-
-    // Timer0 (8Bit) CPU-Takt/1024
-    // react on overflow interrupts 15 times per second
-    TCNT0 = 0;
-    TCCR0 |= (1 << CS12) | (0 << CS11) | (1 << CS10);
-
+    initKeys(KEYS);
     initClock();
-}
 
-/*
- * Interrupt handling
- */
-
- uint16_t int0startTime = 8000;
-
-ISR(INT0_vect) {
-    if((int0startTime + 3906) % 7813 < TCNT1) {
-        switchToNextMode();
-        printTime(bitmap);
-        scanout(bitmap);
-        int0startTime = 8000;
-    } else if(int0startTime == 8000) {
-        int0startTime = TCNT1;
-    }
+    sei();
 }
