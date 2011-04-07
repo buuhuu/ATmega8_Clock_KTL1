@@ -16,6 +16,7 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 */
 
 #include <avr/io.h>
+#include <avr/interrupt.h>
 #include <inttypes.h>
 
 #include "../output/display_12_10.h"
@@ -25,12 +26,28 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 #include "themes_12_10/analogClock.h"
 #include "themes_12_10/dices.h"
 
-uint8_t seconds = 0, minutes = 0, hours = 0;
-uint8_t setMode = SET_MODE_NONE;
+volatile uint8_t seconds = 0, minutes = 0, hours = 0;
+uint8_t currentMode = SET_MODE_NONE;
+
+void initClock() {
+    ASSR = (1<<AS2);
+    TCNT2 = 0x00;
+    TCCR2 = 0x05;
+    TIMSK |= (1<<TOIE2);
+}
+
+inline void stopClock() {
+    TCCR2 &= ~0x05;
+}
+
+inline void startClock() {
+    TCNT2 = 0x00;
+    TCCR2 |= 0x05;
+}
 
 void increaseTime() {
 
-    switch(setMode) {
+    switch(currentMode) {
         case SET_MODE_NONE:
         case SET_MODE_SECONDS:
             seconds ++;
@@ -61,50 +78,76 @@ void increaseTime() {
     return;
 }
 
+void descreaseTime() {
+    switch(currentMode) {
+        case SET_MODE_NONE:
+            return;
+        case SET_MODE_SECONDS:
+            seconds --;
+            break;
+        case SET_MODE_MINUTES:
+            minutes --;
+            break;
+        case SET_MODE_HOUR:
+            hours --;
+            break;
+    }
+
+    if(seconds == 255) {
+        seconds = 59;
+    }
+
+    if(minutes == 255) {
+        minutes = 59;
+    }
+
+    if(hours == 255) {
+        hours = 23;
+    }
+
+}
+
 void resetTime() {
     hours = 0;
     minutes = 0;
     seconds = 0;
 }
 
-void nextSetMode() {
-    switch(setMode) {
+void switchToNextMode() {
+    switch(currentMode) {
         case SET_MODE_HOUR:
-            setMode = SET_MODE_MINUTES;
+            currentMode = SET_MODE_MINUTES;
             break;
         case SET_MODE_MINUTES:
-            setMode = SET_MODE_SECONDS;
+            currentMode = SET_MODE_SECONDS;
             break;
         case SET_MODE_SECONDS:
-            setMode = SET_MODE_NONE;
-            startTimer();
+            currentMode = SET_MODE_NONE;
+            startClock();
             break;
         case SET_MODE_NONE:
-            setMode = SET_MODE_HOUR;
-            stopTimer();
+            currentMode = SET_MODE_HOUR;
+            stopClock();
             break;
         //default setMode = SET_MODE_NONE;
     }
 }
 
+inline uint8_t getMode() {
+    return currentMode;
+}
+
 void printTime(bitmap_t destination) {
 
-    //simpleBinary(destination, hours, minutes, seconds, setMode);
-    raisingBars(destination, hours, minutes, seconds, setMode);
-    //analogClock(destination, hours, minutes, seconds, setMode);
-    //dices(destination, hours, minutes, seconds, setMode);
+    //simpleBinary(destination, hours, minutes, seconds, currentMode);
+    raisingBars(destination, hours, minutes, seconds, currentMode);
+    //analogClock(destination, hours, minutes, seconds, currentMode);
+    //dices(destination, hours, minutes, seconds, currentMode);
 
     return;
 }
 
-inline void startTimer() {
-    // Timer1 (16Bit) CPU-Takt/1024
-    // http://www.info-rlp.de/lernteams/eli05/abschnitt_3_mikrocontroller/problemloesung_2/timer.htm
-    TCNT1 = 0;
-    TCCR1B |= (1 << CS12) | (1 << CS10);
-}
-
-inline void stopTimer() {
-    // Stop Timer0
-    TCCR1B &= ~((1 << CS12) | (1 << CS10));
+// Interupt service routine for clock overflow
+ISR(TIMER2_OVF_vect) {
+    increaseTime();
 }

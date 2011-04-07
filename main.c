@@ -70,7 +70,7 @@ void init() {
     TCNT0 = 0;
     TCCR0 |= (1 << CS12) | (0 << CS11) | (1 << CS10);
 
-    startTimer();
+    initClock();
 }
 
 /*
@@ -81,15 +81,11 @@ void init() {
 
 ISR(INT0_vect) {
     if((int0startTime + 3906) % 7813 < TCNT1) {
-        nextSetMode();
+        switchToNextMode();
         printTime(bitmap);
         scanout(bitmap);
         int0startTime = 8000;
     } else if(int0startTime == 8000) {
         int0startTime = TCNT1;
     }
-}
-
-ISR(TIMER0_OVF_vect) {
-
 }
