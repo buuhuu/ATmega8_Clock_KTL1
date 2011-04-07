@@ -78,18 +78,18 @@ struct point_t getHandPoint(uint8_t time, uint8_t hours) {
 	} else {
 		// using fixed coordinates is easier here
 		switch(time) {
-			case 0: return point(7,1); break;
-			case 1: return point(5,1); break;
-			case 2: return point(3,2); break;
-			case 3: return point(3,4); break;
-			case 4: return point(3,6); break;
-			case 5: return point(5,7); break;
-			case 6: return point(7,7); break;
-			case 7: return point(9,7); break;
-			case 8: return point(10,6); break;
-			case 9: return point(10,4); break;
-			case 10: return point(10,2); break;
-			case 11: return point(9,1); break;
+			case 0: return point(7,1);
+			case 1: return point(5,1);
+			case 2: return point(3,2);
+			case 3: return point(3,4);
+			case 4: return point(3,6);
+			case 5: return point(5,7);
+			case 6: return point(7,7);
+			case 7: return point(9,7);
+			case 8: return point(10,6);
+			case 9: return point(10,4);
+			case 10: return point(10,2);
+			case 11: return point(9,1);
 		}
 	}
 	return point(0,0);
