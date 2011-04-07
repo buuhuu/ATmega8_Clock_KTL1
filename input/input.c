@@ -29,7 +29,7 @@ void initTimer() {
     TIMSK |= KEY_TIMER_OVF_MASK;
 }
 
-void initKeys(uint8_t keyMask) {
+void initKeys(const uint8_t keyMask) {
     initTimer();
 
     KEY_DDR &= ~keyMask;

@@ -42,7 +42,7 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
  */
 #define DECREMENT_ADC_BOUNDAY 255
 
-void initKeys(uint8_t keyMask);
+void initKeys(const uint8_t keyMask);
 
 uint8_t getKeyPressed(uint8_t keyMask);
 
