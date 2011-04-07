@@ -39,9 +39,19 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
  #define SET_MODE_SECONDS    4
 
 /**
+ * Init the clock timer and interrupts
+ */
+void initClock();
+
+/**
  * Increase the time by one second
  */
 void increaseTime();
+
+/**
+ * Decrease currently modified part of time by one seconds/minute/hour
+ */
+void decreaseTime();
 
 /**
  * Reset the time to 0
@@ -51,7 +61,12 @@ void resetTime();
 /**
  * Prepare setting the next time part by shifting the setmode to the next state
  */
-void nextSetMode();
+void switchToNextMode();
+
+/**
+ * Returns the current Mode
+ */
+uint8_t getMode();
 
 /**
  * Used to generate a bitmap based on the given time.
