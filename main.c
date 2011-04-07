@@ -26,17 +26,6 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 
 bitmap_t bitmap = {0,0,0,0,0,0,0,0,0,0};
 
-inline void handleKeyInput() {
-    initKeys(KEYS);
-    if(getKeyPressed(KEY0)) {
-        switchToNextMode();
-    }
-}
-
-inline void handleADCInput() {
-
-}
-
 int main(void)
 {
 
@@ -63,4 +52,15 @@ void init() {
     initClock();
 
     sei();
+}
+
+inline void handleKeyInput() {
+    initKeys(KEYS);
+    if(getKeyPressed(KEY0)) {
+        switchToNextMode();
+    }
+}
+
+inline void handleADCInput() {
+
 }
