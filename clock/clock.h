@@ -22,6 +22,7 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
  * enum CLOCK_MODE specifies the clock modification mode
  */
 enum CLOCK_MODE {
+    MODE_IDLE,      // when STOP_WATCH is idle
     MODE_NONE,      // do not modify clock values
     MODE_HOUR,      // modify hour
     MODE_MINUTE,    // modify minutes

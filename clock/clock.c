@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2011  Dirk Rudolph, Lucas Stach, Paul Ritter
+Copyright (C) 2011  Dirk Rudolph, Lucas Stach, Paul Ritter, Heiko Schmidt
 
 Dieses Programm ist freie Software. Sie können es unter den Bedingungen der GNU
 General Public License Version 2, wie von der Free Software Foundation veröffentlicht,
@@ -19,6 +19,7 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 #include <avr/interrupt.h>
 #include <inttypes.h>
 
+#include "../globalconf.h"
 #include "../output/display_12_10.h"
 #include "clock.h"
 #include "themes_12_10/simpleBinary.h"
@@ -27,12 +28,17 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 #include "themes_12_10/dices.h"
 
 volatile uint8_t seconds = 0, minutes = 0, hours = 0;
+volatile uint16_t milliseconds = 0;
+#ifdef STOP_WATCH
+enum CLOCK_MODE currentMode = MODE_IDLE;
+#else
 enum CLOCK_MODE currentMode = MODE_NONE;
+#endif
 
 void initClock() {
     ASSR = (1<<AS2);    // wire external timesource to tcnt2
     TCNT2 = 0x00;       // set count reg to 0
-    TCCR2 = 0x05;       // prescaler 128
+    TCCR2 = 0x0d;       // prescaler 128
     TIMSK |= (1<<TOIE2);
 }
 
@@ -49,6 +55,9 @@ void increaseTime() {
 
     switch(currentMode) {
         case MODE_NONE:
+            milliseconds++;
+            break;
+        #ifdef STOP_WATCH
         case MODE_SECOND:
             seconds++;
             break;
@@ -58,9 +67,14 @@ void increaseTime() {
         case MODE_HOUR:
             hours++;
             break;
+        #endif
+        default: break;
     }
 
-
+    if(milliseconds == 1000) {
+        seconds++;
+        milliseconds = 0;
+    }
     if(seconds == 60) {
         minutes++;
         seconds = 0;
@@ -80,6 +94,7 @@ void increaseTime() {
 
 void descreaseTime() {
     switch(currentMode) {
+        case MODE_IDLE:
         case MODE_NONE:
             return;
         case MODE_SECOND:
@@ -108,6 +123,7 @@ void descreaseTime() {
 }
 
 void resetTime() {
+    milliseconds = 0;
     hours = 0;
     minutes = 0;
     seconds = 0;
@@ -115,6 +131,12 @@ void resetTime() {
 
 void switchToNextMode() {
     switch(currentMode) {
+        #ifdef STOP_WATCH
+        case MODE_IDLE:
+            currentMode = MODE_NONE;
+            startClock();
+            break;
+        #else
         case MODE_HOUR:
             currentMode = MODE_MINUTE;
             break;
@@ -125,11 +147,16 @@ void switchToNextMode() {
             currentMode = MODE_NONE;
             startClock();
             break;
+        #endif
         case MODE_NONE:
+            #ifdef STOP_WATCH
+            currentMode = MODE_IDLE;
+            #else
             currentMode = MODE_HOUR;
+            #endif
             stopClock();
             break;
-        //default setMode = SET_MODE_NONE;
+        default: break;
     }
 }
 
