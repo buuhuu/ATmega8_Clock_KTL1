@@ -30,6 +30,16 @@ enum CLOCK_MODE {
 };
 
 /**
+ * enum CLOCK_THEME specifies the printTime() design
+ */
+enum CLOCK_THEME {
+    THEME_ANALOG,
+    THEME_DICES,
+    THEME_BARS,
+    THEME_BINARY
+};
+
+/**
  * struct timeval_t holds all time related values
  */
 struct timeval_t {
@@ -70,6 +80,6 @@ uint8_t getMode();
 /**
  * Used to generate a bitmap based on the given time.
  */
-void printTime(bitmap_t destination);
+void printTime(bitmap_t destination, const enum CLOCK_THEME theme);
 
 #endif // CLOCK_H_INCLUDED
