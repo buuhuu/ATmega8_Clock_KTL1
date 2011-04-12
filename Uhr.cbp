@@ -59,13 +59,14 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="clock/themes_12_10/simpleBinary.h" />
-		<Unit filename="main.c">
-			<Option compilerVar="CC" />
-		</Unit>
+		<Unit filename="globalconf.h" />
 		<Unit filename="input/input.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="input/input.h" />
+		<Unit filename="main.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="main.h" />
 		<Unit filename="output/ascii.c">
 			<Option compilerVar="CC" />
