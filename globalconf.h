@@ -15,12 +15,21 @@ erhalten haben. Falls nicht, schreiben Sie an die Free Software Foundation, Inc.
 Franklin St, Fifth Floor, Boston, MA 02110, USA.
 */
 
+/**
+ * This file includes compile time switches for the whole project
+ */
+
 #ifndef GLOBALCONF_H_INCLUDED
 #define GLOBALCONF_H_INCLUDED
 
 /**
- * use to compile for STOP_WATCH-functionality
+ * uncomment to include STOP_WATCH-functionality
  */
 #define STOP_WATCH
+
+/**
+ * uncomment to include ASCII-support
+ */
+#define ASCII_SUPPORT
 
 #endif // GLOBALCONF_H_INCLUDED
