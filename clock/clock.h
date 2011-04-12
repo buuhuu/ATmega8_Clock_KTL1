@@ -30,6 +30,14 @@ enum CLOCK_MODE {
 };
 
 /**
+ * struct timeval_t holds all time related values
+ */
+struct timeval_t {
+    uint8_t seconds, minutes, hours;
+    uint16_t milliseconds;
+};
+
+/**
  * Init the clock timer and interrupts
  */
 void initClock();

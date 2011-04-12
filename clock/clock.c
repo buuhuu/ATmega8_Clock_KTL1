@@ -27,8 +27,13 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 #include "themes_12_10/analogClock.h"
 #include "themes_12_10/dices.h"
 
-volatile uint8_t seconds = 0, minutes = 0, hours = 0;
-volatile uint16_t milliseconds = 0;
+volatile struct timeval_t time = {
+    .seconds = 0,
+    .minutes = 0,
+    .hours = 0,
+    .milliseconds = 0
+};
+
 #ifdef STOP_WATCH
 enum CLOCK_MODE currentMode = MODE_IDLE;
 #else
@@ -54,39 +59,39 @@ inline void startClock() {
 void increaseTime() {
     switch(currentMode) {
         case MODE_NONE:
-            milliseconds++;
+            time.milliseconds++;
             break;
         #ifdef STOP_WATCH
         case MODE_SECOND:
-            seconds++;
+            time.seconds++;
             break;
         case MODE_MINUTE:
-            minutes++;
+            time.minutes++;
             break;
         case MODE_HOUR:
-            hours++;
+            time.hours++;
             break;
         #endif
         default: break;
     }
 
-    if(milliseconds == 1000) {
-        seconds++;
-        milliseconds = 0;
+    if(time.milliseconds == 1000) {
+        time.seconds++;
+        time.milliseconds = 0;
     }
 
-    if(seconds == 60) {
-        minutes++;
-        seconds = 0;
+    if(time.seconds == 60) {
+        time.minutes++;
+        time.seconds = 0;
     }
 
-    if(minutes == 60) {
-        hours++;
-        minutes = 0;
+    if(time.minutes == 60) {
+        time.hours++;
+        time.minutes = 0;
     }
 
-    if(hours == 24) {
-        hours = 0;
+    if(time.hours == 24) {
+        time.hours = 0;
     }
 }
 
@@ -96,34 +101,34 @@ void descreaseTime() {
         case MODE_NONE:
             return;
         case MODE_SECOND:
-            seconds--;
+            time.seconds--;
             break;
         case MODE_MINUTE:
-            minutes--;
+            time.minutes--;
             break;
         case MODE_HOUR:
-            hours--;
+            time.hours--;
             break;
     }
 
-    if(seconds == 255) {
-        seconds = 59;
+    if(time.seconds == 255) {
+        time.seconds = 59;
     }
 
-    if(minutes == 255) {
-        minutes = 59;
+    if(time.minutes == 255) {
+        time.minutes = 59;
     }
 
-    if(hours == 255) {
-        hours = 23;
+    if(time.hours == 255) {
+        time.hours = 23;
     }
 }
 
 void resetTime() {
-    milliseconds = 0;
-    hours = 0;
-    minutes = 0;
-    seconds = 0;
+    time.milliseconds = 0;
+    time.hours = 0;
+    time.minutes = 0;
+    time.seconds = 0;
 }
 
 void switchToNextMode() {
@@ -162,10 +167,10 @@ inline uint8_t getMode() {
 }
 
 void printTime(bitmap_t destination) {
-    //simpleBinary(destination, hours, minutes, seconds, currentMode);
-    raisingBars(destination, hours, minutes, seconds, currentMode);
-    //analogClock(destination, hours, minutes, seconds, currentMode);
-    //dices(destination, hours, minutes, seconds, currentMode);
+    //simpleBinary(destination, time.hours, time.minutes, time.seconds, currentMode);
+    raisingBars(destination, time.hours, time.minutes, time.seconds, currentMode);
+    //analogClock(destination, time.hours, time.minutes, time.seconds, currentMode);
+    //dices(destination, time.hours, time.minutes, time.seconds, currentMode);
 }
 
 // Interupt service routine for clock overflow
