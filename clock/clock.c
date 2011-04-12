@@ -52,7 +52,6 @@ inline void startClock() {
 }
 
 void increaseTime() {
-
     switch(currentMode) {
         case MODE_NONE:
             milliseconds++;
@@ -75,6 +74,7 @@ void increaseTime() {
         seconds++;
         milliseconds = 0;
     }
+
     if(seconds == 60) {
         minutes++;
         seconds = 0;
@@ -88,8 +88,6 @@ void increaseTime() {
     if(hours == 24) {
         hours = 0;
     }
-
-    return;
 }
 
 void descreaseTime() {
@@ -119,7 +117,6 @@ void descreaseTime() {
     if(hours == 255) {
         hours = 23;
     }
-
 }
 
 void resetTime() {
@@ -165,12 +162,10 @@ inline uint8_t getMode() {
 }
 
 void printTime(bitmap_t destination) {
-
     //simpleBinary(destination, hours, minutes, seconds, currentMode);
     raisingBars(destination, hours, minutes, seconds, currentMode);
     //analogClock(destination, hours, minutes, seconds, currentMode);
     //dices(destination, hours, minutes, seconds, currentMode);
-
 }
 
 // Interupt service routine for clock overflow
