@@ -24,7 +24,7 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 #include "output/display_12_10.h"
 #include "clock/clock.h"
 
-bitmap_t bitmap = {0xff,0,0,0,0,0,0,0,0,0};
+bitmap_t bitmap = {0,0,0,0,0,0,0,0,0,0};
 
 int main(void)
 {
