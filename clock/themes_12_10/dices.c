@@ -91,7 +91,7 @@ void drawDice(bitmap_t dest, uint8_t number, struct point_t center) {
 	}
 }
 
-void dices(bitmap_t dest, uint8_t hours, uint8_t minutes, uint8_t seconds, uint8_t setMode) {
+void pt_dices(bitmap_t dest, uint8_t hours, uint8_t minutes, uint8_t seconds, uint8_t setMode) {
     clearBuffer(dest, 0x00);
 	drawDice(dest, seconds % 10, point(1,6));
 	drawDice(dest, seconds / 10, point(1,2));

@@ -18,6 +18,6 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 #ifndef RAISINGBARS_H_INCLUDED
 #define RAISINGBARS_H_INCLUDED
 
-void raisingBars(bitmap_t destination, uint8_t hours, uint8_t minutes, uint8_t seconds, uint8_t setMode);
+void pt_raisingBars(bitmap_t destination, uint8_t hours, uint8_t minutes, uint8_t seconds, uint8_t setMode);
 
 #endif

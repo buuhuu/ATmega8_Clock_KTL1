@@ -20,7 +20,7 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 #include "../../output/display_12_10.h"
 #include "simpleBinary.h"
 
-void simpleBinary(bitmap_t destination, uint8_t hours, uint8_t minutes, uint8_t seconds, uint8_t setMode) {
+void pt_simpleBinary(bitmap_t destination, uint8_t hours, uint8_t minutes, uint8_t seconds, uint8_t setMode) {
 
     destination[1] = hours;
     destination[3] = minutes;

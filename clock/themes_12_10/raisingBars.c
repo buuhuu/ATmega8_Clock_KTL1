@@ -38,7 +38,7 @@ example
 	14h	13m	37s
 */
 
-void raisingBars(bitmap_t destination, uint8_t hours, uint8_t minutes, uint8_t seconds, uint8_t setMode) {
+void pt_raisingBars(bitmap_t destination, uint8_t hours, uint8_t minutes, uint8_t seconds, uint8_t setMode) {
     clearBuffer(destination, 0x00);
 	drawLine(destination, point(0,9-(seconds % 10)), point(0,9));
 	drawLine(destination, point(1,9-(seconds / 10)), point(1,9));

@@ -18,7 +18,7 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 #ifndef ANALOGCLOCK_H_INCLUDED
 #define ANALOGCLOCK_H_INCLUDED
 
-void analogClock(bitmap_t destination, uint8_t hours, uint8_t minutes, uint8_t seconds, uint8_t setMode);
+void pt_analogClock(bitmap_t destination, uint8_t hours, uint8_t minutes, uint8_t seconds, uint8_t setMode);
 
 struct point_t getHandPoint(uint8_t time, uint8_t hours);
 
