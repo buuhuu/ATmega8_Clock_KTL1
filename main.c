@@ -33,7 +33,6 @@ int main(void)
 
     while(1) {
         handleKeyInput();
-        handleADCInput();
 
         printTime(bitmap);
         scanout(bitmap);
@@ -59,8 +58,4 @@ inline void handleKeyInput() {
     if(getKeyPressed(KEY0)) {
         switchToNextMode();
     }
-}
-
-inline void handleADCInput() {
-
 }
