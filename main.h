@@ -22,8 +22,6 @@ void init();
 
 inline void handleKeyInput();
 
-inline void handleADCInput();
-
 int main(void);
 
 #endif // MAIN_H_INCLUDED
