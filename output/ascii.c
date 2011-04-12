@@ -15,6 +15,10 @@ erhalten haben. Falls nicht, schreiben Sie an die Free Software Foundation, Inc.
 Franklin St, Fifth Floor, Boston, MA 02110, USA.
 */
 
+#include "../globalconf.h"
+
+#ifdef ASCII_SUPPORT
+
 #include <inttypes.h>
 
 #include "display_12_10.h"
@@ -33,3 +37,5 @@ void printChar(bitmap_t dest, const char character, const int8_t shift) {
         }
     }
 }
+
+#endif //ASCII_SUPPORT

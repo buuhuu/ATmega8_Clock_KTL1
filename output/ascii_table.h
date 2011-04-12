@@ -21,7 +21,6 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 /**
  * ascii_table defines the printable charset
  */
-
 const uint8_t ascii_table[94][10] =
 {
     {0x00, 0x10, 0x10, 0x10, 0x10, 0x10, 0x00, 0x10, 0x00, 0x00},   // !
