@@ -15,6 +15,9 @@ erhalten haben. Falls nicht, schreiben Sie an die Free Software Foundation, Inc.
 Franklin St, Fifth Floor, Boston, MA 02110, USA.
 */
 
+#ifndef SIMPLE_ARITH_H_INCLUDED
+#define SIMPLE_ARITH_H_INCLUDED
+
 /**
  * This file provides simple arithmetic utility functions
  * Note: this is a header only implementation
@@ -24,28 +27,30 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 /**
  * min_{type} returns the smaller one of two values
  */
-inline uint8_t min_u8(uint8_t a, uint8_t b) {
+static inline uint8_t min_u8(uint8_t a, uint8_t b) {
 	return (a < b) ? a : b;
 }
 
-inline int8_t min_s8(int8_t a, int8_t b) {
+static inline int8_t min_s8(int8_t a, int8_t b) {
 	return (a < b) ? a : b;
 }
 
 /**
  * max_{type} returns the bigger one of two values
  */
-inline uint8_t max_u8(uint8_t a, uint8_t b) {
+static inline uint8_t max_u8(uint8_t a, uint8_t b) {
 	return (a > b) ? a : b;
 }
 
-inline int8_t max_s8(int8_t a, int8_t b) {
+static inline int8_t max_s8(int8_t a, int8_t b) {
 	return (a > b) ? a : b;
 }
 
 /**
  * abs_{type} returns the value of a value witout regard to it's sign
  */
-inline int8_t abs_s8(int8_t a) {
+static inline int8_t abs_s8(int8_t a) {
     return (a < 0) ? -a : a;
 }
+
+#endif
