@@ -81,6 +81,7 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="output/geometry.h" />
+		<Unit filename="utility/simple_arith.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />
