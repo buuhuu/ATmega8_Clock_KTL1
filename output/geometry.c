@@ -22,7 +22,11 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 #include "geometry.h"
 #include "../utility/simple_arith.h"
 
-struct point_t point(uint8_t col, uint8_t row) {
+/**
+ * func point is a helper function to construct a struct point from two
+ * input parameters
+ */
+struct point_t point(const uint8_t col, const uint8_t row) {
     struct point_t temp;
     temp.column = col;
     temp.row = row;

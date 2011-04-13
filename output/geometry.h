@@ -18,13 +18,15 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 #ifndef GEOMETRY_H_INCLUDED
 #define GEOMETRY_H_INCLUDED
 
-/* point */
+/**
+ * struct point holds two coordinates to describe a screen position
+ */
 struct point_t {
 	uint8_t row;
 	uint8_t column;
 };
 
-struct point_t point(uint8_t col, uint8_t row);
+struct point_t point(const uint8_t col, const uint8_t row);
 
 void drawLine(bitmap_t dest, struct point_t start, struct point_t end);
 
