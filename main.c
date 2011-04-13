@@ -34,7 +34,6 @@ int main(void)
     while(1) {
         handleKeyInput();
 
-        // XXX: this should only be called if there is actually something new
         printTime(bitmap, THEME_BARS);
         scanout(bitmap);
     }

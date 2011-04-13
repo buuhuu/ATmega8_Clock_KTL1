@@ -45,6 +45,7 @@ enum CLOCK_THEME {
 struct timeval_t {
     uint8_t seconds, minutes, hours;
     uint16_t milliseconds;
+    uint8_t dirty;
 };
 
 /**

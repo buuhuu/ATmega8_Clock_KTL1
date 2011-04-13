@@ -31,7 +31,8 @@ volatile struct timeval_t time = {
     .seconds = 0,
     .minutes = 0,
     .hours = 0,
-    .milliseconds = 0
+    .milliseconds = 0,
+    .dirty = 0
 };
 
 #ifdef STOP_WATCH
@@ -93,6 +94,8 @@ void increaseTime() {
     if(time.hours == 24) {
         time.hours = 0;
     }
+
+    time.dirty = 1;
 }
 
 void descreaseTime() {
@@ -122,6 +125,8 @@ void descreaseTime() {
     if(time.hours == 255) {
         time.hours = 23;
     }
+
+    time.dirty = 1;
 }
 
 void resetTime() {
@@ -129,6 +134,7 @@ void resetTime() {
     time.hours = 0;
     time.minutes = 0;
     time.seconds = 0;
+    time.dirty = 1;
 }
 
 void switchToNextMode() {
@@ -167,19 +173,24 @@ inline uint8_t getMode() {
 }
 
 void printTime(bitmap_t destination, const enum CLOCK_THEME theme) {
-    switch(theme) {
-        case THEME_ANALOG:
-            pt_analogClock(destination, time, currentMode);
-            break;
-        case THEME_BARS:
-            pt_raisingBars(destination, time, currentMode);
-            break;
-        case THEME_BINARY:
-            pt_simpleBinary(destination, time, currentMode);
-            break;
-        case THEME_DICES:
-            pt_dices(destination, time, currentMode);
-            break;
+    if(time.dirty)
+    {
+        switch(theme) {
+            case THEME_ANALOG:
+                pt_analogClock(destination, time, currentMode);
+                break;
+            case THEME_BARS:
+                pt_raisingBars(destination, time, currentMode);
+                break;
+            case THEME_BINARY:
+                pt_simpleBinary(destination, time, currentMode);
+                break;
+            case THEME_DICES:
+                pt_dices(destination, time, currentMode);
+                break;
+        }
+
+        time.dirty = 0;
     }
 }
 
