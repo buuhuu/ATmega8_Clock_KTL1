@@ -35,16 +35,12 @@ volatile struct timeval_t time = {
     .dirty = 0
 };
 
-#ifdef STOP_WATCH
-enum CLOCK_MODE currentMode = MODE_IDLE;
-#else
 enum CLOCK_MODE currentMode = MODE_NONE;
-#endif
 
 void initClock() {
     ASSR = (1<<AS2);    // wire external timesource to tcnt2
     TCNT2 = 0x00;       // set count reg to 0
-    TCCR2 = 0x0d;       // prescaler 128
+    TCCR2 = 0x05;       // prescaler 128
     TIMSK |= (1<<TOIE2);
 }
 
@@ -60,9 +56,6 @@ inline void startClock() {
 void increaseTime() {
     switch(currentMode) {
         case MODE_NONE:
-            time.milliseconds++;
-            break;
-        #ifdef STOP_WATCH
         case MODE_SECOND:
             time.seconds++;
             break;
@@ -72,13 +65,7 @@ void increaseTime() {
         case MODE_HOUR:
             time.hours++;
             break;
-        #endif
         default: break;
-    }
-
-    if(time.milliseconds == 1000) {
-        time.seconds++;
-        time.milliseconds = 0;
     }
 
     if(time.seconds == 60) {
@@ -139,12 +126,6 @@ void resetTime() {
 
 void switchToNextMode() {
     switch(currentMode) {
-        #ifdef STOP_WATCH
-        case MODE_IDLE:
-            currentMode = MODE_NONE;
-            startClock();
-            break;
-        #else
         case MODE_HOUR:
             currentMode = MODE_MINUTE;
             break;
@@ -155,13 +136,8 @@ void switchToNextMode() {
             currentMode = MODE_NONE;
             startClock();
             break;
-        #endif
         case MODE_NONE:
-            #ifdef STOP_WATCH
-            currentMode = MODE_IDLE;
-            #else
             currentMode = MODE_HOUR;
-            #endif
             stopClock();
             break;
         default: break;
