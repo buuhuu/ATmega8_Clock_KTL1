@@ -63,7 +63,7 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 
 */
 
-void drawDice(bitmap_t dest, uint8_t number, struct point_t center) {
+void drawDice(bitmap_t dest, const uint8_t number, const struct point_t center) {
 	// checking array boundaries
 	if (center.row > 0 && center.column > 0 && center.row < 9 && center.column < 11) {
 		// all mean numbers share center pixel
@@ -92,7 +92,7 @@ void drawDice(bitmap_t dest, uint8_t number, struct point_t center) {
 	}
 }
 
-void pt_dices(bitmap_t dest, const struct timeval_t time, uint8_t setMode) {
+void pt_dices(bitmap_t dest, const struct timeval_t time, const uint8_t clock_mode) {
     clearBuffer(dest, 0x00);
 	drawDice(dest, time.seconds % 10, point(1,6));
 	drawDice(dest, time.seconds / 10, point(1,2));

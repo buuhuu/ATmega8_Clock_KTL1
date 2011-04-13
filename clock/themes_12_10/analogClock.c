@@ -44,7 +44,7 @@ example
 hands are not 100% accurate due to limited pixel count
 */
 
-void pt_analogClock(bitmap_t destination, const struct timeval_t time, uint8_t setMode) {
+void pt_analogClock(bitmap_t destination, const struct timeval_t time, const uint8_t clock_mode) {
     clearBuffer(destination, 0x00);
 	drawLine(destination, point(0,9-(time.seconds % 10)), point(0,9));
 	drawLine(destination, point(1,9-(time.seconds / 10)), point(1,9));
@@ -54,7 +54,7 @@ void pt_analogClock(bitmap_t destination, const struct timeval_t time, uint8_t s
 	drawLine(destination, point(7,4), getHandPoint(time.hours % 12, 1));
 }
 
-struct point_t getHandPoint(uint8_t time, uint8_t hours) {
+struct point_t getHandPoint(const uint8_t time, const uint8_t hours) {
 	uint8_t row, col;
 
 	if (hours == 0) {
