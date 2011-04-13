@@ -85,7 +85,7 @@ void increaseTime() {
     time.dirty = 1;
 }
 
-void descreaseTime() {
+void decreaseTime() {
     switch(currentMode) {
         case MODE_IDLE:
         case MODE_NONE:
