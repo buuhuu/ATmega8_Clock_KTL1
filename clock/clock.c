@@ -169,16 +169,16 @@ inline uint8_t getMode() {
 void printTime(bitmap_t destination, const enum CLOCK_THEME theme) {
     switch(theme) {
         case THEME_ANALOG:
-            pt_analogClock(destination, time.hours, time.minutes, time.seconds, currentMode);
+            pt_analogClock(destination, time, currentMode);
             break;
         case THEME_BARS:
-            pt_raisingBars(destination, time.hours, time.minutes, time.seconds, currentMode);
+            pt_raisingBars(destination, time, currentMode);
             break;
         case THEME_BINARY:
-            pt_simpleBinary(destination, time.hours, time.minutes, time.seconds, currentMode);
+            pt_simpleBinary(destination, time, currentMode);
             break;
         case THEME_DICES:
-            pt_dices(destination, time.hours, time.minutes, time.seconds, currentMode);
+            pt_dices(destination, time, currentMode);
             break;
     }
 }

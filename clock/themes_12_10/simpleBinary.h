@@ -18,6 +18,6 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 #ifndef THEMES_H_INCLUDED
 #define THEMES_H_INCLUDED
 
-void pt_simpleBinary(bitmap_t destination, uint8_t hours, uint8_t minutes, uint8_t seconds, uint8_t setMode);
+void pt_simpleBinary(bitmap_t destination, const struct timeval_t time, uint8_t setMode);
 
 #endif

@@ -20,6 +20,7 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 
 #include "../../output/display_12_10.h"
 #include "../../output/geometry.h"
+#include "../clock.h"
 #include "raisingBars.h"
 
 /* raisingBars
@@ -38,14 +39,14 @@ example
 	14h	13m	37s
 */
 
-void pt_raisingBars(bitmap_t destination, uint8_t hours, uint8_t minutes, uint8_t seconds, uint8_t setMode) {
+void pt_raisingBars(bitmap_t destination, const struct timeval_t time, uint8_t setMode) {
     clearBuffer(destination, 0x00);
-	drawLine(destination, point(0,9-(seconds % 10)), point(0,9));
-	drawLine(destination, point(1,9-(seconds / 10)), point(1,9));
+	drawLine(destination, point(0,9-(time.seconds % 10)), point(0,9));
+	drawLine(destination, point(1,9-(time.seconds / 10)), point(1,9));
 
-	drawLine(destination, point(4,9-(minutes % 10)), point(4,9));
-	drawLine(destination, point(5,9-(minutes / 10)), point(5,9));
+	drawLine(destination, point(4,9-(time.minutes % 10)), point(4,9));
+	drawLine(destination, point(5,9-(time.minutes / 10)), point(5,9));
 
-	drawLine(destination, point(8,9-(hours % 10)), point(8,9));
-	drawLine(destination, point(9,9-(hours / 10)), point(9,9));
+	drawLine(destination, point(8,9-(time.hours % 10)), point(8,9));
+	drawLine(destination, point(9,9-(time.hours / 10)), point(9,9));
 }

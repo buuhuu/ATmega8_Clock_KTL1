@@ -18,13 +18,14 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 #include <inttypes.h>
 
 #include "../../output/display_12_10.h"
+#include "../clock.h"
 #include "simpleBinary.h"
 
-void pt_simpleBinary(bitmap_t destination, uint8_t hours, uint8_t minutes, uint8_t seconds, uint8_t setMode) {
+void pt_simpleBinary(bitmap_t destination, const struct timeval_t time, uint8_t setMode) {
 
-    destination[1] = hours;
-    destination[3] = minutes;
-    destination[5] = seconds;
+    destination[1] = time.hours;
+    destination[3] = time.minutes;
+    destination[5] = time.seconds;
 
     destination[9] = setMode;
 }

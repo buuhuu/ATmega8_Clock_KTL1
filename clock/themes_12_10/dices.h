@@ -18,7 +18,7 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 #ifndef DICES_H_INCLUDED
 #define DICES_H_INCLUDED
 
-void pt_dices(bitmap_t dest, uint8_t hours, uint8_t minutes, uint8_t seconds, uint8_t setMode);
+void pt_dices(bitmap_t dest, const struct timeval_t time, uint8_t setMode);
 
 void drawDice(bitmap_t dest, uint8_t number, struct point_t center);
 

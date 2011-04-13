@@ -20,6 +20,7 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 
 #include "../../output/display_12_10.h"
 #include "../../output/geometry.h"
+#include "../clock.h"
 #include "analogClock.h"
 
 /* analog clock
@@ -42,14 +43,14 @@ example
 hands are not 100% accurate due to limited pixel count
 */
 
-void pt_analogClock(bitmap_t destination, uint8_t hours, uint8_t minutes, uint8_t seconds, uint8_t setMode) {
+void pt_analogClock(bitmap_t destination, const struct timeval_t time, uint8_t setMode) {
     clearBuffer(destination, 0x00);
-	drawLine(destination, point(0,9-(seconds % 10)), point(0,9));
-	drawLine(destination, point(1,9-(seconds / 10)), point(1,9));
+	drawLine(destination, point(0,9-(time.seconds % 10)), point(0,9));
+	drawLine(destination, point(1,9-(time.seconds / 10)), point(1,9));
 
-	drawLine(destination, point(7,4), getHandPoint(minutes,0));
+	drawLine(destination, point(7,4), getHandPoint(time.minutes,0));
 
-	drawLine(destination, point(7,4), getHandPoint(hours % 12, 1));
+	drawLine(destination, point(7,4), getHandPoint(time.hours % 12, 1));
 }
 
 struct point_t getHandPoint(uint8_t time, uint8_t hours) {

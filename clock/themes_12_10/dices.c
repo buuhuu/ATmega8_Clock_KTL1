@@ -20,6 +20,7 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 
 #include "../../output/display_12_10.h"
 #include "../../output/geometry.h"
+#include "../clock.h"
 #include "dices.h"
 
 /* Dices */
@@ -91,14 +92,14 @@ void drawDice(bitmap_t dest, uint8_t number, struct point_t center) {
 	}
 }
 
-void pt_dices(bitmap_t dest, uint8_t hours, uint8_t minutes, uint8_t seconds, uint8_t setMode) {
+void pt_dices(bitmap_t dest, const struct timeval_t time, uint8_t setMode) {
     clearBuffer(dest, 0x00);
-	drawDice(dest, seconds % 10, point(1,6));
-	drawDice(dest, seconds / 10, point(1,2));
+	drawDice(dest, time.seconds % 10, point(1,6));
+	drawDice(dest, time.seconds / 10, point(1,2));
 
-	drawDice(dest, minutes % 10, point(5,6));
-	drawDice(dest, minutes / 10, point(5,2));
+	drawDice(dest, time.minutes % 10, point(5,6));
+	drawDice(dest, time.minutes / 10, point(5,2));
 
-	drawDice(dest, hours % 10, point(9,6));
-	drawDice(dest, hours / 10, point(9,2));
+	drawDice(dest, time.hours % 10, point(9,6));
+	drawDice(dest, time.hours / 10, point(9,2));
 };
