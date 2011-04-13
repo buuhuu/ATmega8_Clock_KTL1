@@ -20,6 +20,7 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 
 #include "../../output/display_12_10.h"
 #include "../../output/geometry.h"
+#include "../../utility/simple_arith.h"
 #include "../clock.h"
 #include "analogClock.h"
 
@@ -58,22 +59,22 @@ struct point_t getHandPoint(uint8_t time, uint8_t hours) {
 
 	if (hours == 0) {
 		if (time <= 15) {
-			row = max(0, (time - 7)/2);
-			col = max(3, (7 - time) / 2);
+			row = max_s8(0, (time - 7)/2);
+			col = max_s8(3, (7 - time) / 2);
 			return point(col,row);
 		}
 		if (time <= 30) {
-			row = min(8, (time - 7)/2);
-			col = max(3, (time - 23)/2 + 3);
+			row = min_s8(8, (time - 7)/2);
+			col = max_s8(3, (time - 23)/2 + 3);
 			return point(col,row);
 		}
 		if (time <= 45) {
-			row = min(8, ((37 - time) / 2) + 8);
-			col = min(11, (time - 23)/2 + 3);
+			row = min_s8(8, ((37 - time) / 2) + 8);
+			col = min_s8(11, (time - 23)/2 + 3);
 			return point(col,row);
 		} else {
-			row = max(0, ((37 - time) / 2) + 8);
-			col = min(11, (53 - time) / 2 + 11);
+			row = max_s8(0, ((37 - time) / 2) + 8);
+			col = min_s8(11, (53 - time) / 2 + 11);
 			return point(col,row);
 		}
 	} else {

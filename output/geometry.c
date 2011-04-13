@@ -20,24 +20,13 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 
 #include "display_12_10.h"
 #include "geometry.h"
+#include "../utility/simple_arith.h"
 
 struct point_t point(uint8_t col, uint8_t row) {
     struct point_t temp;
     temp.column = col;
     temp.row = row;
     return temp;
-}
-
-inline uint8_t min(uint8_t a, uint8_t b) {
-	return (a < b) ? a : b;
-}
-
-inline uint8_t max(uint8_t a, uint8_t b) {
-	return (a > b) ? a : b;
-}
-
-inline uint8_t abs_8t(int8_t a) {
-    return (a < 0) ? -a : a;
 }
 
 void drawLine(bitmap_t dest, struct point_t start, struct point_t end) {
@@ -84,14 +73,14 @@ void drawLine(bitmap_t dest, struct point_t start, struct point_t end) {
 		*/
 		if ((end.column - start.column) >= (end.row - start.row)) {
 			// step at least 1px
-			step = max((end.column - start.column) / (end.row - start.row) - 1 , 1);
+			step = max_s8((end.column - start.column) / (end.row - start.row) - 1 , 1);
 			current = start.column;
 
 			for (i = start.row; i <= end.row; i++) {
 				dest[i] |= (~(1 << step) << current);
-				current = min(current+step,end.column);
+				current = min_s8(current+step,end.column);
 				// adjust step if neccessary
-				step = min(step, end.column-current);
+				step = min_s8(step, end.column-current);
 			}
 			return;
 		} else {
@@ -106,7 +95,7 @@ void drawLine(bitmap_t dest, struct point_t start, struct point_t end) {
 			current = start.row;
 			for (i = start.column; i <= end.column; i++) {
 				for (j=step; j > 0; j--) {
-					dest[min(current++,end.row)] |= 1 << i;
+					dest[min_s8(current++,end.row)] |= 1 << i;
 				}
 			}
 			return;
@@ -118,16 +107,16 @@ void drawLine(bitmap_t dest, struct point_t start, struct point_t end) {
 			##
 			  ##
 		*/
-		if ((end.column - start.column) >= abs_8t(end.row - start.row)) {
+		if ((end.column - start.column) >= abs_s8(end.row - start.row)) {
 			// step at least 1px
-			step = max((end.column - start.column) / abs_8t(end.row - start.row) - 1 , 1);
+			step = max_s8((end.column - start.column) / abs_s8(end.row - start.row) - 1 , 1);
 			current = start.column;
 
 			for (i = start.row; i >= end.row; i--) {
 				dest[i] |= (~(1 << step) << current);
-				current = min(current+step,end.column);
+				current = min_s8(current+step,end.column);
 				// adjust step if neccessary
-				step = min(step, end.column-current);
+				step = min_s8(step, end.column-current);
 			}
 			return;
 		} else {
@@ -138,11 +127,11 @@ void drawLine(bitmap_t dest, struct point_t start, struct point_t end) {
 			 #
 			 #
 		*/
-			step = abs_8t(end.row - start.row) / (end.column - start.column) - 1;
+			step = abs_s8(end.row - start.row) / (end.column - start.column) - 1;
 			current = start.row;
 			for (i = start.column; i >= end.column; i--) {
 				for (j=step; j > 0; j--) {
-					dest[min(current++,end.row)] |= 1 << i;
+					dest[min_s8(current++,end.row)] |= 1 << i;
 				}
 			}
 			return;
