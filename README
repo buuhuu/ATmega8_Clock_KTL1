@@ -1,0 +1,22 @@
+1. Copyright
+	Alle Teile dieser Software stehen unter der GPL v2. Die genauen
+	Bedingungen dieser Lizenz können in der Datei COPYING eingesehen
+	werden. Der vorliegende Sourcecode ist eine Gemeinschaftsarbeit von
+	Dirk Rudolph, Lucas Stach, Paul Ritter und Heiko Schmidt. Die Autoren
+	der einzelnen Module sind in den jeweiligen Dateien hinterlegt.
+
+2. Konfiguration und Bau
+	Das gesamte Projekt wurde mit der IDE Code::Blocks erstellt, wofür auch
+	die entsprechenden Projektdateien im Repository enthalten sind. Es wird
+	zusätzlich ein avr-gcc und avr-libc benötigt.
+
+	Globale Konfiguration für das gesamte Projekt können in der Datei
+	globalconf.h vorgenommen werden. Dort kann z.B. nicht benötigte 
+	Funktionalität ausgeschlossen werden. Erklärungen zu den einzelnen
+	Optionen sind in den Kommentaren zu finden.
+
+3. Übertragen auf das Experimentierboard
+	Der folgende Befehl muss entweder als root ausgeführt werden, oder die
+	entsprechenden udev-rules für den Programmer angelegt werden.
+
+	avrdude -P usb -p m8 -c avrispmkII -U flash:w:<binfile.hex>
