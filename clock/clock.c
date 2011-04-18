@@ -53,26 +53,16 @@ volatile struct timeval_t time = {
 
 enum CLOCK_MODE currentMode = MODE_NONE;
 
-void initClock(const enum CLOCK_TYPE type) {
-    //ASSR |= (1<<AS2);
-    ASSR |= 0x08;                       // wire external timesource to tcnt2
-    TCNT2 = 0x00;                       // set count reg to 0
-    //TIMSK |= (1<<TOIE2);
-    TIMSK |= 0x40;
-    //TCCR2 |= (1<<CS22) | (1<<CS20);
-    TCCR2 |= 0x05;                      // prescaler 128
-}
-
-inline void stopClock() {
+void stopClock_normal() {
     TCCR2 &= ~0x05;
 }
 
-inline void startClock() {
+void startClock_normal() {
     TCNT2 = 0x00;
     TCCR2 |= 0x05;
 }
 
-void increaseTime() {
+void increaseTime_normal() {
     switch(currentMode) {
         case MODE_NONE:
         case MODE_SECOND:
@@ -104,15 +94,7 @@ void increaseTime() {
     time.dirty = 1;
 }
 
-void resetTime() {
-    time.milliseconds = 0;
-    time.hours = 0;
-    time.minutes = 0;
-    time.seconds = 0;
-    time.dirty = 1;
-}
-
-void switchToNextMode() {
+void switchToNextMode_normal() {
     switch(currentMode) {
         case MODE_HOUR:
             currentMode = MODE_MINUTE;
@@ -130,6 +112,24 @@ void switchToNextMode() {
             break;
         default: break;
     }
+}
+
+void initClock(const enum CLOCK_TYPE type) {
+    //ASSR |= (1<<AS2);
+    ASSR |= 0x08;                       // wire external timesource to tcnt2
+    TCNT2 = 0x00;                       // set count reg to 0
+    //TIMSK |= (1<<TOIE2);
+    TIMSK |= 0x40;
+    //TCCR2 |= (1<<CS22) | (1<<CS20);
+    TCCR2 |= 0x05;                      // prescaler 128
+}
+
+void resetTime() {
+    time.milliseconds = 0;
+    time.hours = 0;
+    time.minutes = 0;
+    time.seconds = 0;
+    time.dirty = 1;
 }
 
 inline uint8_t getMode() {
