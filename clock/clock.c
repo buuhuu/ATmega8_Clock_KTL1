@@ -116,11 +116,11 @@ void switchToNextMode_normal() {
     }
 }
 
-void stopClock_stopwatch() {
+inline void stopClock_stopwatch() {
     // FIXME: stub
 }
 
-void startClock_stopwatch() {
+inline void startClock_stopwatch() {
     // FIXME: stub
 }
 
