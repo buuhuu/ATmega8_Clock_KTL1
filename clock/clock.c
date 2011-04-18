@@ -118,6 +118,22 @@ void switchToNextMode_normal() {
     }
 }
 
+void stopClock_stopwatch() {
+    // FIXME: stub
+}
+
+void startClock_stopwatch() {
+    // FIXME: stub
+}
+
+void increaseTime_stopwatch() {
+    // FIXME: stub
+}
+
+void switchToNextMode_stopwatch() {
+    // FIXME: stub
+}
+
 void initClock(const enum CLOCK_TYPE type) {
     //ASSR |= (1<<AS2);
     ASSR |= 0x08;                       // wire external timesource to tcnt2
