@@ -74,7 +74,7 @@ void switchToNextMode();
 /**
  * Returns the current Mode
  */
-uint8_t getMode();
+inline uint8_t getMode();
 
 /**
  * Used to generate a bitmap based on the given time.

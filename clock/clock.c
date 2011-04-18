@@ -137,8 +137,7 @@ inline uint8_t getMode() {
 }
 
 void printTime(bitmap_t destination, const enum CLOCK_THEME theme) {
-    if(time.dirty)
-    {
+    if(time.dirty) {
         switch(theme) {
             case THEME_ANALOG:
                 pt_analogClock(destination, time, currentMode);
