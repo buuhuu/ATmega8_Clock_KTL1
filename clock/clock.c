@@ -38,13 +38,13 @@ volatile struct timeval_t time = {
 enum CLOCK_MODE currentMode = MODE_NONE;
 
 void initClock() {
-    //ASSR |= (1<<AS2);    // wire external timesource to tcnt2
-    ASSR |= 0x08;
-    TCNT2 = 0x00;       // set count reg to 0
+    //ASSR |= (1<<AS2);
+    ASSR |= 0x08;                       // wire external timesource to tcnt2
+    TCNT2 = 0x00;                       // set count reg to 0
     //TIMSK |= (1<<TOIE2);
     TIMSK |= 0x40;
     //TCCR2 |= (1<<CS22) | (1<<CS20);
-    TCCR2 |= 0x05;       // prescaler 128
+    TCCR2 |= 0x05;                      // prescaler 128
 }
 
 inline void stopClock() {
