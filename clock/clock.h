@@ -62,11 +62,6 @@ struct timeval_t {
 void initClock(const enum CLOCK_TYPE type);
 
 /**
- * Increase the time by one second
- */
-void increaseTime();
-
-/**
  * Reset the time to 0
  */
 void resetTime();
