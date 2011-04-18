@@ -36,8 +36,6 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
  */
 struct timefunc_dispatch_t {
     void (*increaseTime)(void);
-    void (*stopClock)(void);
-    void (*startClock)(void);
     void (*switchToNextMode)(void);
 };
 
@@ -57,11 +55,11 @@ struct timefunc_dispatch_t dispatch_table;
 
 /* -------------------------------------------------------------------------- */
 
-void stopClock_normal() {
+inline void stopClock_normal() {
     TCCR2 &= ~0x05;
 }
 
-void startClock_normal() {
+inline void startClock_normal() {
     TCNT2 = 0x00;
     TCCR2 |= 0x05;
 }
@@ -108,11 +106,11 @@ void switchToNextMode_normal() {
             break;
         case MODE_SECOND:
             currentMode = MODE_NONE;
-            startClock();
+            startClock_normal();
             break;
         case MODE_NONE:
             currentMode = MODE_HOUR;
-            stopClock();
+            stopClock_normal();
             break;
         default: break;
     }
@@ -152,6 +150,9 @@ void resetTime() {
     time.dirty = 1;
 }
 
+void switchToNextMode() {
+}
+
 inline uint8_t getMode() {
     return currentMode;
 }
@@ -179,5 +180,5 @@ void printTime(bitmap_t destination, const enum CLOCK_THEME theme) {
 
 // Interupt service routine for clock overflow
 ISR(TIMER2_OVF_vect) {
-    increaseTime();
+    increaseTime_normal();
 }
