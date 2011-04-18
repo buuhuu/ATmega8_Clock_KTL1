@@ -27,6 +27,22 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 #include "themes_12_10/analogClock.h"
 #include "themes_12_10/dices.h"
 
+/**
+ * interal definitions
+ */
+
+ /**
+ * struct timefunc_dispatch_t holds pointers to time related functions
+ */
+struct timefunc_dispatch_t {
+    void (*increaseTime)(void);
+    void (*stopClock)(void);
+    void (*startClock)(void);
+    void (*switchToNextMode)(void);
+};
+
+/* -------------------------------------------------------------------------- */
+
 volatile struct timeval_t time = {
     .seconds = 0,
     .minutes = 0,
