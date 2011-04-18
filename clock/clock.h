@@ -59,11 +59,6 @@ void initClock();
 void increaseTime();
 
 /**
- * Decrease currently modified part of time by one seconds/minute/hour
- */
-void decreaseTime();
-
-/**
  * Reset the time to 0
  */
 void resetTime();

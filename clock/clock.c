@@ -88,37 +88,6 @@ void increaseTime() {
     time.dirty = 1;
 }
 
-void decreaseTime() {
-    switch(currentMode) {
-        case MODE_IDLE:
-        case MODE_NONE:
-            return;
-        case MODE_SECOND:
-            time.seconds--;
-            break;
-        case MODE_MINUTE:
-            time.minutes--;
-            break;
-        case MODE_HOUR:
-            time.hours--;
-            break;
-    }
-
-    if(time.seconds == 255) {
-        time.seconds = 59;
-    }
-
-    if(time.minutes == 255) {
-        time.minutes = 59;
-    }
-
-    if(time.hours == 255) {
-        time.hours = 23;
-    }
-
-    time.dirty = 1;
-}
-
 void resetTime() {
     time.milliseconds = 0;
     time.hours = 0;
