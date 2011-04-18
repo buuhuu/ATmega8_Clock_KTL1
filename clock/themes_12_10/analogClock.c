@@ -22,7 +22,6 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 #include "../../output/geometry.h"
 #include "../../utility/simple_arith.h"
 #include "../clock.h"
-#include "analogClock.h"
 
 /* analog clock
 

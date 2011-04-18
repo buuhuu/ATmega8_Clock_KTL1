@@ -19,7 +19,6 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 
 #include "../../output/display_12_10.h"
 #include "../clock.h"
-#include "simpleBinary.h"
 
 void pt_simpleBinary(bitmap_t destination, const struct timeval_t time, const uint8_t clock_mode) {
 

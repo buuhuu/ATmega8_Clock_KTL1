@@ -22,10 +22,7 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 #include "../globalconf.h"
 #include "../output/display_12_10.h"
 #include "clock.h"
-#include "themes_12_10/simpleBinary.h"
-#include "themes_12_10/raisingBars.h"
-#include "themes_12_10/analogClock.h"
-#include "themes_12_10/dices.h"
+#include "themes_12_10/themes_12_10.h"
 
 /**
  * interal definitions
