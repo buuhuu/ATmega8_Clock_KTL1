@@ -30,4 +30,6 @@ struct point_t point(const uint8_t col, const uint8_t row);
 
 void drawLine(bitmap_t dest, struct point_t start, struct point_t end);
 
+void drawDice(bitmap_t dest, const uint8_t number, const struct point_t center);
+
 #endif
