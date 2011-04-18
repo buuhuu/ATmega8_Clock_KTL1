@@ -53,6 +53,10 @@ volatile struct timeval_t time = {
 
 enum CLOCK_MODE currentMode = MODE_NONE;
 
+struct timefunc_dispatch_t dispatch_table;
+
+/* -------------------------------------------------------------------------- */
+
 void stopClock_normal() {
     TCCR2 &= ~0x05;
 }
