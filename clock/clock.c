@@ -113,6 +113,7 @@ void switchToNextMode_normal() {
     }
 }
 
+#ifdef STOP_WATCH
 inline void stopClock_stopwatch() {
     // FIXME: stub
 }
@@ -128,6 +129,7 @@ void increaseTime_stopwatch() {
 void switchToNextMode_stopwatch() {
     // FIXME: stub
 }
+#endif // STOP_WATCH
 
 void initClock(const enum CLOCK_TYPE type) {
     //ASSR |= (1<<AS2);
@@ -143,11 +145,13 @@ void initClock(const enum CLOCK_TYPE type) {
             dispatch_table.switchToNextMode = switchToNextMode_normal;
             TCCR2 |= 0x05;  // prescaler 128
             break;
+        #ifdef STOP_WATCH
         case TYPE_STOPWATCH:
             dispatch_table.increaseTime = increaseTime_stopwatch;
             dispatch_table.switchToNextMode = switchToNextMode_stopwatch;
             TCCR2 |= 0x05;  // XXX: this is wrong
             break;
+        #endif
     }
 
 }

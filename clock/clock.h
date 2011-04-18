@@ -22,8 +22,10 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
  * enum CLOCK_TYPE specifies how the clock behaves
  */
 enum CLOCK_TYPE {
-    TYPE_NORMAL,
-    TYPE_STOPWATCH
+    TYPE_NORMAL
+    #ifdef STOP_WATCH
+    ,TYPE_STOPWATCH
+    #endif
 };
 
 /**

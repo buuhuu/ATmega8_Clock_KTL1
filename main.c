@@ -19,6 +19,7 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 #include <avr/interrupt.h>
 #include <inttypes.h>
 
+#include "globalconf.h"
 #include "main.h"
 #include "input/input.h"
 #include "output/display_12_10.h"
