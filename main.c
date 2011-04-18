@@ -48,7 +48,7 @@ void init() {
     DDRD = 0xf0;
 
     initKeys(KEYS);
-    initClock();
+    initClock(TYPE_NORMAL);
 
     sei();
 }

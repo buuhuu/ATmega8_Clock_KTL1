@@ -19,6 +19,14 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 #define CLOCK_H_INCLUDED
 
 /**
+ * enum CLOCK_TYPE specifies how the clock behaves
+ */
+enum CLOCK_TYPE {
+    TYPE_NORMAL,
+    TYPE_STOPWATCH
+};
+
+/**
  * enum CLOCK_MODE specifies the clock modification mode
  */
 enum CLOCK_MODE {
@@ -51,7 +59,7 @@ struct timeval_t {
 /**
  * Init the clock timer and interrupts
  */
-void initClock();
+void initClock(const enum CLOCK_TYPE type);
 
 /**
  * Increase the time by one second

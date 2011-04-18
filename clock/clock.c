@@ -37,7 +37,7 @@ volatile struct timeval_t time = {
 
 enum CLOCK_MODE currentMode = MODE_NONE;
 
-void initClock() {
+void initClock(const enum CLOCK_TYPE type) {
     //ASSR |= (1<<AS2);
     ASSR |= 0x08;                       // wire external timesource to tcnt2
     TCNT2 = 0x00;                       // set count reg to 0
