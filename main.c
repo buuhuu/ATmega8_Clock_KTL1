@@ -20,12 +20,20 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 #include <inttypes.h>
 
 #include "globalconf.h"
-#include "main.h"
 #include "input/input.h"
 #include "output/display_12_10.h"
 #include "clock/clock.h"
 
+
+static inline void handleKeyInput();
+
+void init();
+
+/* -------------------------------------------------------------------------- */
+
 bitmap_t bitmap = {0,0,0,0,0,0,0,0,0,0};
+
+/* -------------------------------------------------------------------------- */
 
 int main(void)
 {
