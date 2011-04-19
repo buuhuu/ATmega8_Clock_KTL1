@@ -46,19 +46,16 @@
 		<Unit filename="clock/themes_12_10/analogClock.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="clock/themes_12_10/analogClock.h" />
 		<Unit filename="clock/themes_12_10/dices.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="clock/themes_12_10/dices.h" />
 		<Unit filename="clock/themes_12_10/raisingBars.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="clock/themes_12_10/raisingBars.h" />
 		<Unit filename="clock/themes_12_10/simpleBinary.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="clock/themes_12_10/simpleBinary.h" />
+		<Unit filename="clock/themes_12_10/themes_12_10.h" />
 		<Unit filename="globalconf.h" />
 		<Unit filename="input/input.c">
 			<Option compilerVar="CC" />
