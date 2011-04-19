@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2011 Paul Ritter
+Copyright (C) 2011 Paul Ritter, Lucas Stach
 
 Dieses Programm ist freie Software. Sie können es unter den Bedingungen der GNU
 General Public License Version 2, wie von der Free Software Foundation veröffentlicht,
@@ -22,114 +22,36 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 #include "geometry.h"
 #include "../utility/simple_arith.h"
 
-void drawLine(bitmap_t dest, struct point_t start, struct point_t end) {
-	uint8_t i, j;
-	struct point_t temp;
+void drawLine(bitmap_t dest, struct point_t start, struct point_t end)
+{
+    struct point_t pt;
+    uint8_t span, vertical;
 
-	// handle vertical lines
-	if (start.column == end.column) {
-		if (start.row > end.row) {
-			temp = start;
-			start = end;
-			end = temp;
-		}
+    if(abs_s8(end.column - start.column) > abs_s8(start.row - end.row)) {
+        if(end.column < start.column) {
+            pt = start;
+            start = end;
+            end = pt;
+        }
+        span = end.column - start.column;
+        vertical = 1;
+    } else {
+        if(end.row < start.row) {
+            pt = start;
+            start = end;
+            end = pt;
+        }
+        span = end.row - start.row;
+        vertical = 0;
+    }
 
-		for (i=start.row; i < end.row; i++) {
-			dest[i] |= (1 << start.column);
-		}
-		return;
-	}
-
-	// handle horizontal lines
-	if (start.row == end.row) {
-		dest[start.row] |= (~(1 << end.column) << start.column);
-		return;
-	}
-
-	// handle other types of lines and generate steps
-	uint8_t step;
-	uint8_t current;
-
-	// always paint from LSB to MSB
-	if (start.column > end.column) {
-		temp = start;
-		start = end;
-		end = temp;
-	}
-
-	// going down
-	if (end.row > start.row) {
-		// step down horizontally
-		/*
-			  ##
-			##
-		*/
-		if ((end.column - start.column) >= (end.row - start.row)) {
-			// step at least 1px
-			step = max_s8((end.column - start.column) / (end.row - start.row) - 1 , 1);
-			current = start.column;
-
-			for (i = start.row; i <= end.row; i++) {
-				dest[i] |= (~(1 << step) << current);
-				current = min_s8(current+step,end.column);
-				// adjust step if neccessary
-				step = min_s8(step, end.column-current);
-			}
-			return;
-		} else {
-		// step down vertically
-		/*
-			 #
-			 #
-			#
-			#
-		*/
-			step = (end.row - start.row) / (end.column - start.column) - 1;
-			current = start.row;
-			for (i = start.column; i <= end.column; i++) {
-				for (j=step; j > 0; j--) {
-					dest[min_s8(current++,end.row)] |= 1 << i;
-				}
-			}
-			return;
-		}
-	} else {
-	// going up
-		// step up horizontally
-		/*
-			##
-			  ##
-		*/
-		if ((end.column - start.column) >= abs_s8(end.row - start.row)) {
-			// step at least 1px
-			step = max_s8((end.column - start.column) / abs_s8(end.row - start.row) - 1 , 1);
-			current = start.column;
-
-			for (i = start.row; i >= end.row; i--) {
-				dest[i] |= (~(1 << step) << current);
-				current = min_s8(current+step,end.column);
-				// adjust step if neccessary
-				step = min_s8(step, end.column-current);
-			}
-			return;
-		} else {
-		// step up vertically
-		/*
-			#
-			#
-			 #
-			 #
-		*/
-			step = abs_s8(end.row - start.row) / (end.column - start.column) - 1;
-			current = start.row;
-			for (i = start.column; i >= end.column; i--) {
-				for (j=step; j > 0; j--) {
-					dest[min_s8(current++,end.row)] |= 1 << i;
-				}
-			}
-			return;
-		}
-	}
+    for(uint8_t i = 0; i < span; i++) {
+        if(vertical) {
+            setPixel(dest, start.column+i, (start.row*(span-i) + end.row*i +span/2)/span);
+        } else {
+            setPixel(dest, (start.column*(span-i) + end.column*i + span/2)/span, start.row+i);
+        }
+    }
 }
 
 /**

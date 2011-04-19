@@ -26,6 +26,15 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 typedef uint16_t bitmap_t[10];
 
 /**
+ * setPixel is a helper function to set a single Pixel on a given bitmap
+ * Note: this is a header only implementation
+ */
+static inline void setPixel(bitmap_t dest, const uint8_t col, const uint8_t row)
+{
+    dest[row] |= (1<<col);
+}
+
+/**
  * Scanout the given bitmap to the display
  */
 void scanout(const bitmap_t bitmap);
