@@ -74,11 +74,6 @@ void resetTime();
 void switchToNextMode();
 
 /**
- * Returns the current Mode
- */
-inline uint8_t getMode();
-
-/**
  * Used to generate a bitmap based on the given time.
  */
 void printTime(bitmap_t destination, const enum CLOCK_THEME theme);

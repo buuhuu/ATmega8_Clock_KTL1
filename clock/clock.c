@@ -168,10 +168,6 @@ void switchToNextMode() {
     dispatch_table.switchToNextMode();
 }
 
-inline uint8_t getMode() {
-    return currentMode;
-}
-
 void printTime(bitmap_t destination, const enum CLOCK_THEME theme) {
     if(time.dirty) {
         switch(theme) {
