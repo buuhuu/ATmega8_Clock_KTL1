@@ -22,17 +22,6 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 #include "geometry.h"
 #include "../utility/simple_arith.h"
 
-/**
- * func point is a helper function to construct a struct point from two
- * input parameters
- */
-struct point_t point(const uint8_t col, const uint8_t row) {
-    struct point_t temp;
-    temp.column = col;
-    temp.row = row;
-    return temp;
-}
-
 void drawLine(bitmap_t dest, struct point_t start, struct point_t end) {
 	uint8_t i, j;
 	struct point_t temp;

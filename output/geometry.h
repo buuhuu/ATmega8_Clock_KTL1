@@ -26,7 +26,19 @@ struct point_t {
 	uint8_t column;
 };
 
-struct point_t point(const uint8_t col, const uint8_t row);
+/**
+ * func point is a helper function to construct a struct point from two
+ * input parameters
+ * Note: this is a header only implementation
+ */
+static inline struct point_t point(const uint8_t col, const uint8_t row)
+{
+    struct point_t temp = {
+        .column = col,
+        .row = row
+    };
+    return temp;
+}
 
 void drawLine(bitmap_t dest, struct point_t start, struct point_t end);
 
