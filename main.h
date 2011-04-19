@@ -20,7 +20,7 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 
 void init();
 
-inline void handleKeyInput();
+static inline void handleKeyInput();
 
 int main(void);
 

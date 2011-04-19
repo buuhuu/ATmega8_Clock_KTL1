@@ -52,11 +52,11 @@ struct timefunc_dispatch_t dispatch_table;
 
 /* -------------------------------------------------------------------------- */
 
-inline void stopClock_normal() {
+static inline void stopClock_normal() {
     TCCR2 &= ~0x05;
 }
 
-inline void startClock_normal() {
+static inline void startClock_normal() {
     TCNT2 = 0x00;
     TCCR2 |= 0x05;
 }
@@ -114,11 +114,11 @@ void switchToNextMode_normal() {
 }
 
 #ifdef STOP_WATCH
-inline void stopClock_stopwatch() {
+static inline void stopClock_stopwatch() {
     // FIXME: stub
 }
 
-inline void startClock_stopwatch() {
+static inline void startClock_stopwatch() {
     // FIXME: stub
 }
 

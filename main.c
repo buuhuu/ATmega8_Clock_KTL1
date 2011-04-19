@@ -54,7 +54,7 @@ void init() {
     sei();
 }
 
-inline void handleKeyInput() {
+static inline void handleKeyInput() {
     initKeys(KEYS);
     if(getKeyPressed(KEY0)) {
         switchToNextMode();
