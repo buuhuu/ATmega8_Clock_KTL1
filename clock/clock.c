@@ -59,8 +59,8 @@ static inline void stopClock_normal()
 
 static inline void startClock_normal()
 {
-    TCNT2 = 0x00;
-    TCCR2 |= 0x05;
+    TCNT2 = 0x00;   // set count reg to 0
+    TCCR2 |= 0x05;  // prescaler 128
 }
 
 void increaseTime_normal()
@@ -143,22 +143,19 @@ void initClock(const enum CLOCK_TYPE type)
 {
     //ASSR |= (1<<AS2);
     ASSR |= 0x08;                       // wire external timesource to tcnt2
-    TCNT2 = 0x00;                       // set count reg to 0
-    //TIMSK |= (1<<TOIE2);
     TIMSK |= 0x40;
-    //TCCR2 |= (1<<CS22) | (1<<CS20);
 
     switch(type) {
         case TYPE_NORMAL:
             dispatch_table.increaseTime = increaseTime_normal;
             dispatch_table.switchToNextMode = switchToNextMode_normal;
-            TCCR2 |= 0x05;  // prescaler 128
+            startClock_normal();
             break;
         #ifdef STOP_WATCH
         case TYPE_STOPWATCH:
             dispatch_table.increaseTime = increaseTime_stopwatch;
             dispatch_table.switchToNextMode = switchToNextMode_stopwatch;
-            TCCR2 |= 0x05;  // XXX: this is wrong
+            startClock_stopwatch();
             break;
         #endif
     }
