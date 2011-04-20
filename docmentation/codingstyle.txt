@@ -1,0 +1,35 @@
+Um die Lesbarkeit sicher zu stellen und allen Mitwirkenden eine schnelle
+Einarbeitung in den Quellcode zu ermöglichen, sollte der durchgängig der K&R
+Formatierungsstil verwendet werden.
+
+Wichtige Eckpunkte:
+
+- öffnende Klammern werden auf die selbe Zeile wie das öffnende Statement
+  geschrieben
+- Ausnahme: bei Funktionen werden die öffnenden Klammern in eine eigene
+  Zeile nach dem Funktionskopf geschrieben
+- schließende Klammern werden immer auf eine eigene Zeile und in Höhe des
+  öffnenden Statements gesetzt
+
+- keine Leerzeichen zwischen Statement und normalen Klammern
+- bei Listen folgt nach dem Komma ein Leerzeichen
+
+- Einrückungen sind ein Tab weit
+- ein Tab entspricht 4 Zeichen
+- Codezeilen sollten nicht länger als 80 Zeichen sein
+
+- Variablen- und Funktionsnamen beginnen mit einem Kleinbuchstaben
+- defines und enums sind komplett in Großbuchstaben zu schreiben
+
+Beispiel:
+
+#define SOMETHING 1
+
+int fooFunc(int z, int y)
+{
+    if(z) {
+        doSomething();
+    } else {
+        doSomeOtherThing();
+    }
+}
