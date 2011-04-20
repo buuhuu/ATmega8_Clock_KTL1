@@ -63,7 +63,8 @@ void drawLine(bitmap_t dest, struct point_t start, struct point_t end)
  *
  *   1     2     3     4     5     6     7     8     9
  */
-void drawDice(bitmap_t dest, const uint8_t number, const struct point_t center) {
+void drawDice(bitmap_t dest, const uint8_t number, const struct point_t center)
+{
 	// checking array boundaries
 	if (center.row > 0 && center.column > 0 && center.row < 9 && center.column < 11) {
 		// all mean numbers share center pixel

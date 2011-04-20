@@ -52,16 +52,19 @@ struct timefunc_dispatch_t dispatch_table;
 
 /* -------------------------------------------------------------------------- */
 
-static inline void stopClock_normal() {
+static inline void stopClock_normal()
+{
     TCCR2 &= ~0x05;
 }
 
-static inline void startClock_normal() {
+static inline void startClock_normal()
+{
     TCNT2 = 0x00;
     TCCR2 |= 0x05;
 }
 
-void increaseTime_normal() {
+void increaseTime_normal()
+{
     switch(currentMode) {
         case MODE_NONE:
         case MODE_SECOND:
@@ -93,7 +96,8 @@ void increaseTime_normal() {
     time.dirty = 1;
 }
 
-void switchToNextMode_normal() {
+void switchToNextMode_normal()
+{
     switch(currentMode) {
         case MODE_HOUR:
             currentMode = MODE_MINUTE;
@@ -114,24 +118,29 @@ void switchToNextMode_normal() {
 }
 
 #ifdef STOP_WATCH
-static inline void stopClock_stopwatch() {
+static inline void stopClock_stopwatch()
+{
     // FIXME: stub
 }
 
-static inline void startClock_stopwatch() {
+static inline void startClock_stopwatch()
+{
     // FIXME: stub
 }
 
-void increaseTime_stopwatch() {
+void increaseTime_stopwatch()
+{
     // FIXME: stub
 }
 
-void switchToNextMode_stopwatch() {
+void switchToNextMode_stopwatch()
+{
     // FIXME: stub
 }
 #endif // STOP_WATCH
 
-void initClock(const enum CLOCK_TYPE type) {
+void initClock(const enum CLOCK_TYPE type)
+{
     //ASSR |= (1<<AS2);
     ASSR |= 0x08;                       // wire external timesource to tcnt2
     TCNT2 = 0x00;                       // set count reg to 0
@@ -156,7 +165,8 @@ void initClock(const enum CLOCK_TYPE type) {
 
 }
 
-void resetTime() {
+void resetTime()
+{
     time.milliseconds = 0;
     time.hours = 0;
     time.minutes = 0;
@@ -164,11 +174,13 @@ void resetTime() {
     time.dirty = 1;
 }
 
-void switchToNextMode() {
+void switchToNextMode()
+{
     dispatch_table.switchToNextMode();
 }
 
-void printTime(bitmap_t destination, const enum CLOCK_THEME theme) {
+void printTime(bitmap_t destination, const enum CLOCK_THEME theme)
+{
     if(time.dirty) {
         switch(theme) {
             case THEME_ANALOG:
@@ -190,6 +202,7 @@ void printTime(bitmap_t destination, const enum CLOCK_THEME theme) {
 }
 
 // Interupt service routine for clock overflow
-ISR(TIMER2_OVF_vect) {
+ISR(TIMER2_OVF_vect)
+{
     dispatch_table.increaseTime();
 }

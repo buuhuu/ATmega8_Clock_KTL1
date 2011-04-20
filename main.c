@@ -50,7 +50,8 @@ int main(void)
     return 0;
 }
 
-void init() {
+void init()
+{
     // set i/o pin direction
     DDRB = 0xdf;    // external crystal pins must be 0
     DDRC = 0x0f;
@@ -62,7 +63,8 @@ void init() {
     sei();
 }
 
-static inline void handleKeyInput() {
+static inline void handleKeyInput()
+{
     initKeys(KEYS);
     if(getKeyPressed(KEY0)) {
         switchToNextMode();

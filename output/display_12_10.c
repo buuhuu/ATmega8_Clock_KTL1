@@ -20,8 +20,8 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 
 #include "display_12_10.h"
 
-void scanout(const bitmap_t bitmap) {
-
+void scanout(const bitmap_t bitmap)
+{
     uint8_t currentRow, currentBit;
 
     // for each row
@@ -71,7 +71,8 @@ void scanout(const bitmap_t bitmap) {
     }
 }
 
-void clearBuffer(bitmap_t bitmap, const uint8_t pattern) {
+void clearBuffer(bitmap_t bitmap, const uint8_t pattern)
+{
     int i;
 
     for(i = 0; i < 10; i++) {

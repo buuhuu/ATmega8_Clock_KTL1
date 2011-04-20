@@ -38,7 +38,8 @@ example
 	14h	13m	37s
 */
 
-void pt_raisingBars(bitmap_t destination, const struct timeval_t time, const uint8_t clock_mode) {
+void pt_raisingBars(bitmap_t destination, const struct timeval_t time, const uint8_t clock_mode)
+{
     clearBuffer(destination, 0x00);
 	drawLine(destination, point(0,9-(time.seconds % 10)), point(0,9));
 	drawLine(destination, point(1,9-(time.seconds / 10)), point(1,9));

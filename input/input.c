@@ -24,19 +24,21 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 volatile uint8_t keyPressed;
 
 
-void initTimer() {
+void initTimer()
+{
     KEY_TIMER = KEY_TIMER_CONF;
     TIMSK |= KEY_TIMER_OVF_MASK;
 }
 
-void initKeys(const uint8_t keyMask) {
+void initKeys(const uint8_t keyMask)
+{
     initTimer();
 
     KEY_DDR &= ~keyMask;
     KEY_PORT |= keyMask;
 }
 
-ISR( KEY_TIMER_OVF_VECT )
+ISR(KEY_TIMER_OVF_VECT)
 {
     static uint8_t q0, q1, keyState;
     uint8_t c;
@@ -52,7 +54,8 @@ ISR( KEY_TIMER_OVF_VECT )
     keyPressed |= keyState & c;
 }
 
-uint8_t getKeyPressed(uint8_t keyMask) {
+uint8_t getKeyPressed(uint8_t keyMask)
+{
     cli();
     keyMask &= keyPressed;
     keyPressed ^= keyMask;
