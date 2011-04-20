@@ -44,4 +44,9 @@ void scanout(const bitmap_t bitmap);
  */
 void clearBuffer(bitmap_t bitmap, const uint8_t pattern);
 
+/**
+ * shiftBuffer shifts the contents of a bitmap by the given degree
+ */
+void shiftBuffer(bitmap_t bitmap, const uint8_t shift);
+
 #endif // DISPLAY_12_10_H_INCLUDED

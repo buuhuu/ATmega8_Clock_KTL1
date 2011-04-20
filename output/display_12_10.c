@@ -77,3 +77,16 @@ void clearBuffer(bitmap_t bitmap, const uint8_t pattern)
         bitmap[i] = ((pattern << 8) | (pattern));
     }
 }
+
+void shiftBuffer(bitmap_t bitmap, const uint8_t shift)
+{
+    if(shift > 0) {
+        for(uint8_t i = 0; i < 10; i++) {
+            bitmap[i] <<= shift;
+        }
+    } else {
+        for(uint8_t i = 0; i < 10; i++) {
+            bitmap[i] >>= -shift;
+        }
+    }
+}
