@@ -19,7 +19,7 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 
 #ifdef ASCII_SUPPORT
 
-#include <inttypes.h>
+#include <stdint.h>
 
 #include "display_12_10.h"
 #include "ascii_table.h"

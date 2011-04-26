@@ -15,7 +15,7 @@ erhalten haben. Falls nicht, schreiben Sie an die Free Software Foundation, Inc.
 Franklin St, Fifth Floor, Boston, MA 02110, USA.
 */
 #include <avr/io.h>
-#include <inttypes.h>
+#include <stdint.h>
 
 #include "../../output/display_12_10.h"
 #include "../clock.h"

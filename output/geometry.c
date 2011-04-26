@@ -16,7 +16,7 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 */
 
 #include <avr/io.h>
-#include <inttypes.h>
+#include <stdint.h>
 
 #include "display_12_10.h"
 #include "geometry.h"
