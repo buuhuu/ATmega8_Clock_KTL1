@@ -129,7 +129,7 @@ static inline void stopClock_stopwatch()
 
 static inline void startClock_stopwatch()
 {
-    TCNT2 = 0x48;   // set count reg to 72
+    TCNT2 = 92;   // set count reg to 92
     TCCR2 |= 0x01;  // no prescaler
 }
 
@@ -137,12 +137,14 @@ void increaseTime_stopwatch()
 {
     switch(currentMode) {
         case MODE_NONE:
-            time.milliseconds++;
+            time.milliseconds += 5; // 1000ms / 200 interupts/s
+            TCNT2 = 92; // preload to get 200 interupts per second
             break;
         case MODE_IDLE:
         default: break;
     }
-    if(time.milliseconds == 100) {
+
+    if(time.milliseconds == 1000) {
         time.seconds++;
         time.milliseconds = 0;
     }
@@ -197,7 +199,6 @@ void initClock(const enum CLOCK_TYPE type)
         case TYPE_STOPWATCH:
             dispatch_table.increaseTime = increaseTime_stopwatch;
             dispatch_table.switchToNextMode = switchToNextMode_stopwatch;
-            startClock_stopwatch();
             break;
         #endif
     }

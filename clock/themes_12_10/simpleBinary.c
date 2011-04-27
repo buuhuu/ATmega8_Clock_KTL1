@@ -17,6 +17,7 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 #include <avr/io.h>
 #include <stdint.h>
 
+#include "../../globalconf.h"
 #include "../../output/display_12_10.h"
 #include "../clock.h"
 
@@ -25,6 +26,9 @@ void pt_simpleBinary(bitmap_t destination, const struct timeval_t time, const ui
     destination[1] = time.hours;
     destination[3] = time.minutes;
     destination[5] = time.seconds;
+    #ifdef STOP_WATCH
+    destination[6] = time.milliseconds;
+    #endif
 
     destination[9] = clock_mode;
 }
