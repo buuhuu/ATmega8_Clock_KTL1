@@ -50,17 +50,17 @@ struct point_t getHandPoint(const uint8_t time, const uint8_t hours)
 	if (hours == 0) {
 		if (time <= 15) {
 			row = max_s8(0, (time - 7)/2);
-			col = max_s8(3, (7 - time) / 2);
+			col = max_s8(3, 7 - time / 2);
 			return point(col,row);
 		}
 		if (time <= 30) {
 			row = min_s8(8, (time - 7)/2);
-			col = max_s8(3, (time - 23)/2 + 3);
+			col = max_s8(3, (time - 23)/2 + 3 + time/30);
 			return point(col,row);
 		}
 		if (time <= 45) {
 			row = min_s8(8, ((37 - time) / 2) + 8);
-			col = min_s8(11, (time - 23)/2 + 3);
+			col = min_s8(11, (time - 23)/2 + 4);
 			return point(col,row);
 		} else {
 			row = max_s8(0, ((37 - time) / 2) + 8);
@@ -72,9 +72,9 @@ struct point_t getHandPoint(const uint8_t time, const uint8_t hours)
 		switch(time) {
 			case 0: return point(7,1);
 			case 1: return point(5,1);
-			case 2: return point(3,2);
-			case 3: return point(3,4);
-			case 4: return point(3,6);
+			case 2: return point(4,2);
+			case 3: return point(4,4);
+			case 4: return point(4,6);
 			case 5: return point(5,7);
 			case 6: return point(7,7);
 			case 7: return point(9,7);
