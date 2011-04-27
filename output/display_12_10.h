@@ -49,4 +49,9 @@ void clearBuffer(bitmap_t bitmap, const uint8_t pattern);
  */
 void shiftBuffer(bitmap_t bitmap, const uint8_t shift);
 
+/**
+ * shadowBuffer copies the content of a given bitmap to a shadow bitmap
+ */
+void shadowBuffer(bitmap_t shadow, const bitmap_t source);
+
 #endif // DISPLAY_12_10_H_INCLUDED

@@ -16,6 +16,7 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 */
 
 #include <stdint.h>
+#include <string.h>
 #include <avr/io.h>
 
 #include "display_12_10.h"
@@ -89,4 +90,9 @@ void shiftBuffer(bitmap_t bitmap, const uint8_t shift)
             bitmap[i] >>= -shift;
         }
     }
+}
+
+void shadowBuffer(bitmap_t shadow, const bitmap_t source)
+{
+    memcpy(shadow, source, sizeof(bitmap_t));
 }
