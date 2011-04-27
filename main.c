@@ -24,9 +24,6 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 #include "output/display_12_10.h"
 #include "clock/clock.h"
 
-
-static inline void handleKeyInput();
-
 void init();
 
 /* -------------------------------------------------------------------------- */
@@ -41,7 +38,9 @@ int main(void)
     init();
 
     while(1) {
-        handleKeyInput();
+        if(getKeyPressed(KEY0)) {
+            switchToNextMode();
+        }
 
         printTime(bitmap, THEME_BARS);
         scanout(bitmap);
@@ -61,12 +60,4 @@ void init()
     initClock(TYPE_NORMAL);
 
     sei();
-}
-
-static inline void handleKeyInput()
-{
-    initKeys(KEYS);
-    if(getKeyPressed(KEY0)) {
-        switchToNextMode();
-    }
 }
