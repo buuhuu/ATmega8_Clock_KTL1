@@ -24,10 +24,6 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 #include "clock.h"
 #include "themes_12_10/themes_12_10.h"
 
-/**
- * interal definitions
- */
-
  /**
  * struct timefunc_dispatch_t holds pointers to time related functions
  */
@@ -63,7 +59,7 @@ static inline void stopClock_normal()
 
 static inline void startClock_normal()
 {
-    TCNT2 = 0x00;   // set count reg to 0
+    TCNT2 = 0;   // set count reg to 0
     TCCR2 |= 0x05;  // prescaler 128
 }
 
@@ -129,7 +125,7 @@ static inline void stopClock_stopwatch()
 
 static inline void startClock_stopwatch()
 {
-    TCNT2 = 92;   // set count reg to 92
+    TCNT2 = 92;  // set count reg to 92
     TCCR2 |= 0x01;  // no prescaler
 }
 
@@ -185,9 +181,8 @@ void switchToNextMode_stopwatch()
 
 void initClock(const enum CLOCK_TYPE type)
 {
-    //ASSR |= (1<<AS2);
-    ASSR |= 0x08;                       // wire external timesource to tcnt2
-    TIMSK |= 0x40;
+    ASSR |= 0x08; // wire external timesource to tcnt2
+    TIMSK |= 0x40;  // enable overflow interupt for counter 2
 
     switch(type) {
         case TYPE_NORMAL:
