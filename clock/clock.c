@@ -46,7 +46,11 @@ volatile struct timeval_t time = {
     .dirty = 0
 };
 
+#ifdef STOP_WATCH
+enum CLOCK_MODE currentMode = MODE_IDLE;
+#else
 enum CLOCK_MODE currentMode = MODE_NONE;
+#endif
 
 struct timefunc_dispatch_t dispatch_table;
 
@@ -120,22 +124,60 @@ void switchToNextMode_normal()
 #ifdef STOP_WATCH
 static inline void stopClock_stopwatch()
 {
-    // FIXME: stub
+    TCCR2 &= ~0x01;
 }
 
 static inline void startClock_stopwatch()
 {
-    // FIXME: stub
+    TCNT2 = 0x48;   // set count reg to 72
+    TCCR2 |= 0x01;  // no prescaler
 }
 
 void increaseTime_stopwatch()
 {
-    // FIXME: stub
+    switch(currentMode) {
+        case MODE_NONE:
+            time.milliseconds++;
+            break;
+        case MODE_IDLE:
+        default: break;
+    }
+    if(time.milliseconds == 100) {
+        time.seconds++;
+        time.milliseconds = 0;
+    }
+
+    if(time.seconds == 60) {
+        time.minutes++;
+        time.seconds = 0;
+    }
+
+    if(time.minutes == 60) {
+        time.hours++;
+        time.minutes = 0;
+    }
+
+    if(time.hours == 24) {
+        time.hours = 0;
+    }
+
+    time.dirty = 1;
 }
 
 void switchToNextMode_stopwatch()
 {
-    // FIXME: stub
+        switch(currentMode) {
+        case MODE_IDLE:
+            currentMode = MODE_NONE;
+            resetTime();
+            startClock_stopwatch();
+            break;
+        case MODE_NONE:
+            currentMode = MODE_IDLE;
+            stopClock_stopwatch();
+            break;
+        default: break;
+        }
 }
 #endif // STOP_WATCH
 

@@ -34,7 +34,7 @@ enum CLOCK_TYPE {
 enum CLOCK_MODE {
     MODE_IDLE,      // when STOP_WATCH is idle
     MODE_NONE,      // do not modify clock values
-    MODE_HOUR,      // modify hour
+    MODE_HOUR,      // modify hours
     MODE_MINUTE,    // modify minutes
     MODE_SECOND     // modify seconds
 };
