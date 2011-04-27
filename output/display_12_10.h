@@ -54,4 +54,9 @@ void shiftBuffer(bitmap_t bitmap, const uint8_t shift);
  */
 void shadowBuffer(bitmap_t shadow, const bitmap_t source);
 
+/**
+ * invertBuffer inverts the contents of a given bitmap
+ */
+void invertBuffer(bitmap_t buffer);
+
 #endif // DISPLAY_12_10_H_INCLUDED

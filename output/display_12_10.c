@@ -96,3 +96,10 @@ void shadowBuffer(bitmap_t shadow, const bitmap_t source)
 {
     memcpy(shadow, source, sizeof(bitmap_t));
 }
+
+void invertBuffer(bitmap_t buffer)
+{
+    for(uint8_t i=0; i<10; i++) {
+        buffer[i] = ~buffer[i];
+    }
+}
