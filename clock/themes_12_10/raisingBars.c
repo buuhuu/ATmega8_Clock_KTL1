@@ -50,4 +50,19 @@ void pt_raisingBars(bitmap_t destination, const struct timeval_t time,
 
 	drawLine(destination, point(8,9-(time.hours % 10)), point(8,9));
 	drawLine(destination, point(9,9-(time.hours / 10)), point(9,9));
+
+	switch(clock_mode) {
+        case MODE_NONE:
+            break;
+        case MODE_SECOND:
+            destination[9] = 0x0001;
+            break;
+        case MODE_MINUTE:
+            destination[9] = 0x0010;
+            break;
+        case MODE_HOUR:
+            destination[9] = 0x0100;
+            break;
+        default: break;
+	}
 }

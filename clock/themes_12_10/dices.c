@@ -34,4 +34,19 @@ void pt_dices(bitmap_t dest, const struct timeval_t time,
 
 	drawDice(dest, time.hours % 10, point(9,6));
 	drawDice(dest, time.hours / 10, point(9,2));
+
+	switch(clock_mode) {
+        case MODE_NONE:
+            break;
+        case MODE_SECOND:
+            dest[9] = 0x0002;
+            break;
+        case MODE_MINUTE:
+            dest[9] = 0x0020;
+            break;
+        case MODE_HOUR:
+            dest[9] = 0x0200;
+            break;
+        default: break;
+	}
 };

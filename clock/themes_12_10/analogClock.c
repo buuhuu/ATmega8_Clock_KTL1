@@ -97,4 +97,19 @@ void pt_analogClock(bitmap_t destination, const struct timeval_t time,
 	drawLine(destination, point(7,4), getHandPoint(time.minutes,0));
 
 	drawLine(destination, point(7,4), getHandPoint(time.hours % 12, 1));
+
+	switch(clock_mode) {
+        case MODE_NONE:
+            break;
+        case MODE_SECOND:
+            destination[9] = 0x0001;
+            break;
+        case MODE_MINUTE:
+            destination[9] = 0x0040;
+            break;
+        case MODE_HOUR:
+            destination[9] = 0x0800;
+            break;
+        default: break;
+	}
 }
