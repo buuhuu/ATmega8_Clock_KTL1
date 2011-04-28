@@ -38,7 +38,7 @@ int main(void)
     init();
 
     while(1) {
-        if(getKeyPressed(KEY0)) {
+        if(getKeyShort(KEY0)) {
             switchToNextMode();
         }
 

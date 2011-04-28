@@ -15,14 +15,20 @@ erhalten haben. Falls nicht, schreiben Sie an die Free Software Foundation, Inc.
 Franklin St, Fifth Floor, Boston, MA 02110, USA.
 */
 
+/**
+ * Quelle: http://www.mikrocontroller.net/articles/Entprellung
+ */
+
+
 #include <stdint.h>
 #include <avr/io.h>
 #include <avr/interrupt.h>
 
 #include "input.h"
 
-volatile uint8_t keyPressed;
+volatile uint8_t keyPressed, keyRepeated, keyState;
 
+uint8_t disableKeyShort = 0;
 
 void initTimer()
 {
@@ -40,7 +46,7 @@ void initKeys(const uint8_t keyMask)
 
 ISR(KEY_TIMER_OVF_VECT)
 {
-    static uint8_t q0, q1, keyState;
+    static uint8_t q0, q1, qr;
     uint8_t c;
 
     KEY_TIMER_COUNT = SAMPLE_RATE;
@@ -52,6 +58,15 @@ ISR(KEY_TIMER_OVF_VECT)
 
     keyState ^= c;
     keyPressed |= keyState & c;
+
+    if( (keyState & KEYS) == 0 ) {
+        qr = KEY_REPEAT_START;
+    }
+
+    if( --qr == 0 ) {
+        qr = KEY_REPEAT_NEXT;
+        keyRepeated |= keyState & KEYS;
+    }
 }
 
 uint8_t getKeyPressed(uint8_t keyMask)
@@ -60,5 +75,29 @@ uint8_t getKeyPressed(uint8_t keyMask)
     keyMask &= keyPressed;
     keyPressed ^= keyMask;
     sei();
+    return keyMask;
+}
+
+uint8_t getKeyShort(uint8_t keyMask)
+{
+    cli();
+    keyMask = getKeyPressed(~keyState & keyMask);
+    if(disableKeyShort && getKeyRepeated(keyMask)) {
+        disableKeyShort = 0;
+        return 0;
+    } else {
+        return keyMask;
+    }
+}
+
+uint8_t getKeyRepeated(uint8_t keyMask)
+{
+    cli();
+    keyMask &= keyRepeated;
+    keyRepeated ^= keyMask;
+    sei();
+    if(keyMask) {
+        disableKeyShort = 1;
+    }
     return keyMask;
 }
