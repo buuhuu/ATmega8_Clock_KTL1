@@ -23,7 +23,7 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 #include "../clock.h"
 
 void pt_dices(bitmap_t dest, const struct timeval_t time,
-              const uint8_t clock_mode)
+              const enum CLOCK_MODE clock_mode)
 {
     clearBuffer(dest, 0x00);
 	drawDice(dest, time.seconds % 10, point(1,6));

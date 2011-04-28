@@ -39,7 +39,7 @@ example
 */
 
 void pt_raisingBars(bitmap_t destination, const struct timeval_t time,
-                    const uint8_t clock_mode)
+                    const enum CLOCK_MODE clock_mode)
 {
     clearBuffer(destination, 0x00);
 	drawLine(destination, point(0,9-(time.seconds % 10)), point(0,9));

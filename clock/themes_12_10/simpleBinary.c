@@ -22,7 +22,7 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 #include "../clock.h"
 
 void pt_simpleBinary(bitmap_t destination, const struct timeval_t time,
-                     const uint8_t clock_mode)
+                     const enum CLOCK_MODE clock_mode)
 {
     destination[1] = time.hours;
     destination[3] = time.minutes;

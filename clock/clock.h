@@ -32,11 +32,11 @@ enum CLOCK_TYPE {
  * enum CLOCK_MODE specifies the clock modification mode
  */
 enum CLOCK_MODE {
-    MODE_IDLE,      // when STOP_WATCH is idle
-    MODE_NONE,      // do not modify clock values
-    MODE_HOUR,      // modify hours
-    MODE_MINUTE,    // modify minutes
-    MODE_SECOND     // modify seconds
+    MODE_IDLE = 0xff,      // when STOP_WATCH is idle
+    MODE_NONE = 0x01,      // do not modify clock values
+    MODE_HOUR = 0x02,      // modify hours
+    MODE_MINUTE = 0x04,    // modify minutes
+    MODE_SECOND = 0x08     // modify seconds
 };
 
 /**
