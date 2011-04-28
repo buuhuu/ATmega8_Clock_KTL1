@@ -22,6 +22,7 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 #include "../globalconf.h"
 #include "../output/display_12_10.h"
 #include "clock.h"
+#include "../input/input.h"
 #include "themes_12_10/themes_12_10.h"
 
  /**
@@ -67,14 +68,22 @@ void increaseTime_normal()
 {
     switch(currentMode) {
         case MODE_NONE:
-        case MODE_SECOND:
             time.seconds++;
             break;
+        case MODE_SECOND:
+            if(getKeyRepeated(KEY0)) {
+                time.seconds++;
+            }
+            break;
         case MODE_MINUTE:
-            time.minutes++;
+            if(getKeyRepeated(KEY0)) {
+                time.minutes++;
+            }
             break;
         case MODE_HOUR:
-            time.hours++;
+            if(getKeyRepeated(KEY0)) {
+                time.hours++;
+            }
             break;
         default: break;
     }
@@ -107,11 +116,11 @@ void switchToNextMode_normal()
             break;
         case MODE_SECOND:
             currentMode = MODE_NONE;
-            startClock_normal();
+            TCCR2 |= 0x01; // set 1 to get back the 128 prescaler
             break;
         case MODE_NONE:
             currentMode = MODE_HOUR;
-            stopClock_normal();
+            TCCR2 &= 0xfe; // clear 1 to get the prescaler to 64
             break;
         default: break;
     }
