@@ -18,12 +18,32 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 #ifndef THEMES_12_10_H_INCLUDED
 #define THEMES_12_10_H_INCLUDED
 
-void pt_simpleBinary(bitmap_t destination, const struct timeval_t time, const uint8_t clock_mode);
+/**
+ * Print the current time with the simple binary theme to the given bitmap and
+ * append the clock mode indicator.
+ */
+void pt_simpleBinary(bitmap_t destination, const struct timeval_t time,
+                     const uint8_t clock_mode);
 
-void pt_raisingBars(bitmap_t destination, const struct timeval_t time, const uint8_t clock_mode);
+/**
+ * Print the current time with the rising bars theme to the given bitmap and
+ * append the clock mode indicator.
+ */
+void pt_raisingBars(bitmap_t destination, const struct timeval_t time,
+                    const uint8_t clock_mode);
 
-void pt_dices(bitmap_t dest, const struct timeval_t time, const uint8_t clock_mode);
+/**
+ * Print the current time with the dices theme to the given bitmap and
+ * append the clock mode indicator.
+ */
+void pt_dices(bitmap_t dest, const struct timeval_t time,
+              const uint8_t clock_mode);
 
-void pt_analogClock(bitmap_t destination, const struct timeval_t time, const uint8_t clock_mode);
+/**
+ * Print the current time with the analog clock theme to the given bitmap and
+ * append the clock mode indicator.
+ */
+void pt_analogClock(bitmap_t destination, const struct timeval_t time,
+                    const uint8_t clock_mode);
 
 #endif // THEMES_12_10_H_INCLUDED

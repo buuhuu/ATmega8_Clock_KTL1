@@ -47,9 +47,11 @@ void drawLine(bitmap_t dest, struct point_t start, struct point_t end)
 
     for(uint8_t i = 0; i < span; i++) {
         if(vertical) {
-            setPixel(dest, start.column+i, (start.row*(span-i) + end.row*i +span/2)/span);
+            setPixel(dest, start.column+i,
+                     (start.row*(span-i) + end.row*i + span/2)/span);
         } else {
-            setPixel(dest, (start.column*(span-i) + end.column*i + span/2)/span, start.row+i);
+            setPixel(dest, (start.column*(span-i) + end.column*i + span/2)/span,
+                     start.row+i);
         }
     }
 }
@@ -66,7 +68,8 @@ void drawLine(bitmap_t dest, struct point_t start, struct point_t end)
 void drawDice(bitmap_t dest, const uint8_t number, const struct point_t center)
 {
 	// checking array boundaries
-	if (center.row > 0 && center.column > 0 && center.row < 9 && center.column < 11) {
+	if (center.row > 0 && center.column > 0 && center.row < 9
+        && center.column < 11) {
 		// all mean numbers share center pixel
 		if (number % 2 == 1) {
 			dest[center.row] |= 1 << center.column;
@@ -83,7 +86,8 @@ void drawDice(bitmap_t dest, const uint8_t number, const struct point_t center)
 		}
 		// all numbers > 5 share left and right pixels
 		if (number > 5) {
-			dest[center.row] |= (1 << (center.column - 1)) | (1 << (center.column + 1)) ;
+			dest[center.row] |= (1 << (center.column - 1)) |
+                                (1 << (center.column + 1));
 		}
 		// all numbers > 7 share top and bottom pixels
 		if (number > 7) {

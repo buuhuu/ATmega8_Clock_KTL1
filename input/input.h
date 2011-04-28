@@ -37,27 +37,19 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 #define KEYS KEY0
 
 /**
- * When the ADC value is higher then this const the current modified part of time will be incresed each 500 ms
- */
-#define INCREMENT_ADC_BOUNDARY 768
-
-/**
- * When the ADC value is lower then this bounday the currend modified part of time will be decremented each 500 ms
- */
-#define DECREMENT_ADC_BOUNDAY 255
-
-/**
  * initializes a predefined keymask and timer
  */
 void initKeys(const uint8_t keyMask);
 
 /**
- * returns true if the key(s) given by the keymask were pressed for a short time before invocation.
+ * returns true if the key(s) given by the keymask were pressed for a short
+ * time before invocation.
  */
 uint8_t getKeyShort(uint8_t keyMask);
 
 /**
- * returns true if the key(s) given by the keymask were pressed for a longer time before invocation.
+ * returns true if the key(s) given by the keymask were pressed for a longer
+ * time before invocation.
  */
 uint8_t getKeyRepeated(uint8_t keyMask);
 
