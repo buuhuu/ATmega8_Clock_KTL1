@@ -42,7 +42,11 @@ int main(void)
             switchToNextMode();
         }
 
+        #ifdef STOP_WATCH
+        printTime(bitmap, THEME_BINARY);
+        #else
         printTime(bitmap, THEME_BARS);
+        #endif
         scanout(bitmap);
     }
 
@@ -57,7 +61,12 @@ void init()
     DDRD = 0xf0;
 
     initKeys(KEYS);
+    #ifdef STOP_WATCH
+    initClock(TYPE_STOPWATCH);
+    #else
     initClock(TYPE_NORMAL);
+    #endif
+
 
     sei();
 }

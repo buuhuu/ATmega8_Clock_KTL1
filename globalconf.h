@@ -25,7 +25,7 @@ Franklin St, Fifth Floor, Boston, MA 02110, USA.
 /**
  * uncomment to include STOP_WATCH-functionality
  */
-//#define STOP_WATCH
+#define STOP_WATCH
 
 /**
  * uncomment to include ASCII-support
