@@ -32,9 +32,13 @@ void scanout(const bitmap_t bitmap)
             continue;
         }
 
+        //hold local bitmask to avoid recalculation
+        // SUM(1...12) * 12 = 780 => 12 * 10 = 120 lsr operations
+        uint16_t bitmask = 0x0001;
+
         // for each bit, start at lsb
         for(currentBit = 0; currentBit < 12; currentBit++) {
-            if((bitmap[currentRow] & (0x01 << currentBit)) == 0) {
+            if((bitmap[currentRow] & bitmask) == 0) {
                 PORTB |= (0x01 << 4);
             } else {
                 PORTB &= ~(0x01 << 4);
@@ -43,6 +47,9 @@ void scanout(const bitmap_t bitmap)
             // clk
             PORTB |= (0x01 << 3);
             PORTB &= ~(0x01 << 3);
+
+            // prepare bitmask for next interation
+            bitmask = bitmask << 1;
         }
 
         // disable all rows
